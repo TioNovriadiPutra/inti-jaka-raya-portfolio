@@ -7,7 +7,7 @@ import LoadingScreen from "@components/templates/LoadingScreen";
 const App = () => {
   const [fontsLoaded] = useFonts({
     "GeneralSans-Medium": require("@assets/fonts/GeneralSans-Medium.ttf"),
-    "GeneralSans-SemiBold": require("@assets/fonts/GeneralSans-SemiBold.ttf"),
+    "GeneralSans-SemiBold": require("@assets/fonts/GeneralSans-Semibold.ttf"),
     "Poppins-Regular": require("@assets/fonts/Poppins-Regular.ttf"),
     "Poppins-SemiBold": require("@assets/fonts/Poppins-SemiBold.ttf"),
     "GeneralSans-Italic": require("@assets/fonts/GeneralSans-Italic.ttf"),
