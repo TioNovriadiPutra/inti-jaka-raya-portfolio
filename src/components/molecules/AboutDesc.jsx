@@ -9,8 +9,17 @@ const AboutDesc = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View style={isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb}>
-      <WhatWeDo color={colors.Blue} question="What We Do" title="Memberikan solusi terbaik untuk pemeliharaan industri" func="whatWeDo" />
+    <View
+      style={
+        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb
+      }
+    >
+      <WhatWeDo
+        color={colors.Blue}
+        question="What We Do"
+        title="Delivering The Finest Industrial Maintenance Solution"
+        func="whatWeDo"
+      />
       <WhatWeDoStory />
     </View>
   );

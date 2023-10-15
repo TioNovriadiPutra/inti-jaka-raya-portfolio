@@ -7,10 +7,12 @@ const HomeStartTitle = ({ mobile }) => {
   return (
     <View style={mobile ? styles.containerMobile : styles.container}>
       <Text style={[styles.title, !mobile ? styles.titleWeb : null]}>
-        Welcome To PT INTI JAKA RAYA
+        WELCOME TO PT INTI JAKA RAYA
       </Text>
       <Text style={[styles.subTitle, !mobile ? styles.titleWeb : null]}>
-        Distributor Of Unique Polymer System For Indonesia
+        PT INTI JAKA RAYA was established in 2017 located in Bandung West Java –
+        Indonesia. PT INTI JAKA RAYA is a Sole Distributor for UNIQUE POLYMER
+        SYSTEMS Made in UK, in Indonesia.
       </Text>
     </View>
   );

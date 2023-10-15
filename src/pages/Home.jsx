@@ -34,27 +34,39 @@ const Home = ({ navigation }) => {
   }, [isFocused]);
 
   return (
-    <MainContainer withParallax parallaxImage={require("@assets/images/startBg.png")} scrollRef={scrollRef}>
+    <MainContainer
+      withParallax
+      parallaxImage={require("@assets/images/startBg.png")}
+      scrollRef={scrollRef}
+    >
       <HomeStart scrollRef={scrollRef} />
       <HomeNewsletter />
       <HomeDesc
         color={colors.Blue}
         image={require("@assets/images/desc1.png")}
-        type="Coating"
-        title="Kami Menjaga"
-        desc="Salah satu proses yang sangat dibutuhkan dalam dunia indsutri. Coating atau pelapisan sendiri dapat dianggap suatu proses pelapisan yang diaplikasikan kepada permuakan benda atau substrat dengan tujuan untuk meningkatkan kemampuan permuakan dari benda yang dilapisi, seperti : ketahanan terhadap korosi, erosi, abbrasive, kavitasi dan serangan bahan kimia / Chemical Attack"
-        animatedPoinEnter={isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 60 : HEIGHT + 520}
-        animatedPoinExit={isTabletOrMobileDevice ? HEIGHT + 552 * 2 : HEIGHT + 300}
+        type="Rebuild"
+        title="We Rebuild"
+        desc="Coatings play a critical role in industrial repair processes. They are used to restore or enhance the performance and longevity of various industrial components and structures. Here are some ways coatings are applied in industrial repair"
+        animatedPoinEnter={
+          isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 60 : HEIGHT + 520
+        }
+        animatedPoinExit={
+          isTabletOrMobileDevice ? HEIGHT + 552 * 2 : HEIGHT + 300
+        }
       />
       <HomeDesc
         color={colors.Orange}
         image={require("@assets/images/desc2.png")}
-        type="Maintenance"
-        title="Kami Memelihara"
-        desc="Pemeliharaan industri adalah rencana tindakan yang diambil perusahaan untuk menjaga aset atau peralatan industrial berjalan dengan efisien selama mungkin."
+        type="Protect"
+        title="We Protect"
+        desc="Provide a shield against a multitude of potential threats, including corrosion from moisture and chemicals, abrasion and wear from mechanical forces, and damage from UV radiation and weathering"
         position="right"
-        animatedPoinEnter={isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 560 : HEIGHT + 520 + 300}
-        animatedPoinExit={isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 360 : HEIGHT + 300}
+        animatedPoinEnter={
+          isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 560 : HEIGHT + 520 + 300
+        }
+        animatedPoinExit={
+          isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 360 : HEIGHT + 300
+        }
       />
       <HomeProduct />
       <HomeGallery />

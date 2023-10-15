@@ -9,8 +9,16 @@ const AboutMission = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View style={isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb}>
-      <WhatWeDo color={colors.Orange} question="Our Mission" title="Berdedikasi untuk memberikan yang terbaik" />
+    <View
+      style={
+        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb
+      }
+    >
+      <WhatWeDo
+        color={colors.Orange}
+        question="Our Mission"
+        title="We are dedicated to offering the best goods and services."
+      />
       <MissionDescBox />
     </View>
   );
