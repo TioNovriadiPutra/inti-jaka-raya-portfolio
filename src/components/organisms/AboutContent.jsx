@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   containerWeb: {
     paddingHorizontal: 182,
-    paddingTop: 350,
+    paddingTop: 140,
     gap: 223,
   },
   containerMobile: {

@@ -7,10 +7,29 @@ const MissionDescBox = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View style={isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb}>
-      <MissionBox index={0} icon={require("@assets/images/graph.png")} title="Mendorong Bisnis Anda" desc="Memastikan profitabilitas yang mampu mendukung pertumbuhan perusahaan" />
-      <MissionBox index={1} icon={require("@assets/images/insurrance.png")} title="Menjaga Kepercayaan" desc="Membangun kepercayaan melalui kualitas, inovasi produk dan jasa" />
-      <MissionBox index={3} icon={require("@assets/images/idea.png")} title="Memberi Solusi Kreatif" desc="Mendorong kompetensi kreatif untuk memenangkan persaingan" />
+    <View
+      style={
+        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb
+      }
+    >
+      <MissionBox
+        index={0}
+        icon={require("@assets/images/graph.png")}
+        title="Helps Improve Business"
+        desc="Ensure profitability that can support the growth of the company."
+      />
+      <MissionBox
+        index={1}
+        icon={require("@assets/images/insurrance.png")}
+        title="Maintain Trust"
+        desc="Building trust through innovation in quality, products, and services."
+      />
+      <MissionBox
+        index={3}
+        icon={require("@assets/images/idea.png")}
+        title="Providing Creative Solutions"
+        desc="Encourage creative competence to win the competition."
+      />
     </View>
   );
 };

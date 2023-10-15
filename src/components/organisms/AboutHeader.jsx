@@ -1,7 +1,6 @@
 import { Dimensions, ImageBackground, StyleSheet, View } from "react-native";
 import React from "react";
 import AboutQuotes from "@components/molecules/AboutQuotes";
-import AboutFloatingImage from "@components/molecules/AboutFloatingImage";
 import useResponsive from "@hooks/useResponsive";
 import { colors } from "@themes/colors";
 
@@ -21,7 +20,6 @@ const AboutHeader = () => {
     >
       <View style={styles.backdrop}>
         <AboutQuotes />
-        <AboutFloatingImage image={require("@assets/images/floating.png")} />
       </View>
     </ImageBackground>
   );

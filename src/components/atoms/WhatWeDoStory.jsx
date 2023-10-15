@@ -3,7 +3,11 @@ import React, { useEffect } from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
 
@@ -38,11 +42,14 @@ const WhatWeDoStory = () => {
   }, [scroll]);
 
   return (
-    <Animated.View style={[!isTabletOrMobileDevice && styles.container, whatWeDoStoryAnimatedStyle]}>
+    <Animated.View
+      style={[
+        !isTabletOrMobileDevice && styles.container,
+        whatWeDoStoryAnimatedStyle,
+      ]}
+    >
       <Text style={styles.story}>
-        Kami berdedikasi untuk menyediakan solusi terbaik yang sesuai dengan setiap kebutuhan yang klien minta dari berbagai industri. Kami menggunakan produk terbaik serta pelayanan yang memastikan
-        kepuasan klien menjadi tujuan utama dari hadirnya kami sebagai solusi atas permasalahan industrial. Pelayanan kami dapat meningkatkan effisiensi bisnis, memberikan jaminan proteksi jangka
-        panjang, hingga penghematan biaya perawatan.
+        {`PT INTI JAKA RAYA was established in 2017 located in Bandung West Java – Indonesia. PT INTI JAKA RAYA is a Sole Distributor for UNIQUE POLYMER SYSTEMS Made in UK, in Indonesia.\n\nPT INTI JAKA RAYA provides innovative business solution to our customers that have fluid flow system problems, such as : erosion, corrosion, cavitation, dry abrasive, chemical attack concrete problem, floor protection and etc.`}
       </Text>
     </Animated.View>
   );
