@@ -31,14 +31,14 @@ const NavbarButtonSection = ({
         onPress={() => handleChangePage("Home")}
       />
       <NavbarButton
-        label="Newsletter"
-        white={white}
-        onPress={() => handleChangePage("Newsletter")}
-      />
-      <NavbarButton
         label="About"
         white={white}
         onPress={() => handleChangePage("About")}
+      />
+      <NavbarButton
+        label="Newsletter"
+        white={white}
+        onPress={() => handleChangePage("Newsletter")}
       />
       <NavbarButton
         label="Contact"
