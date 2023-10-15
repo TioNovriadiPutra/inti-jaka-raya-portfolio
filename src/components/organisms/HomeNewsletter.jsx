@@ -5,15 +5,25 @@ import NewsletterList from "@components/molecules/NewsletterList";
 import NewsletterTitle from "@components/molecules/NewsletterTitle";
 import useResponsive from "@hooks/useResponsive";
 import ButtonText from "@components/atoms/ButtonText";
+import { dataNewsLetter } from "@utils/constant/newsletterData";
 
 const HomeNewsletter = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
+    <View
+      style={[
+        styles.container,
+        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
+      ]}
+    >
       <NewsletterTitle isMobile={isTabletOrMobileDevice} />
       <NewsletterList isMobile={isTabletOrMobileDevice} />
-      {isTabletOrMobileDevice && <ButtonText label="See More" isMobile={isTabletOrMobileDevice} />}
+      {isTabletOrMobileDevice ? (
+        dataNewsLetter[0].image ? (
+          <ButtonText label="See More" isMobile={isTabletOrMobileDevice} />
+        ) : null
+      ) : null}
     </View>
   );
 };

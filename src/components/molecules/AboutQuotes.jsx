@@ -55,8 +55,8 @@ const AboutQuotes = () => {
           titleAnimatedStyle,
         ]}
       >
-        We Believe In The <Text style={styles.success}>Success</Text> Of{`\n`}
-        Every Business
+        We Are Committed To Providing{`\n`}
+        <Text style={styles.success}>The Best Product & Services</Text>
       </Animated.Text>
 
       <Animated.View
@@ -68,10 +68,9 @@ const AboutQuotes = () => {
         ]}
       >
         <Text style={styles.quotes}>
-          “It is only when we take chances, when our lives improve. The initial
-          and the most difficult risk that we need to take is to become honest.
+          Our Product Can Help Increase Efficiencies, Reduce Cost, Save Time,
+          And Increase Machinery & Building Structures Lifetime
         </Text>
-        <Text style={styles.author}>—Walter Anderson</Text>
       </Animated.View>
     </View>
   );
@@ -124,11 +123,5 @@ const styles = StyleSheet.create({
   },
   quotesMobile: {
     fontSize: 14,
-  },
-  author: {
-    textAlign: "center",
-    fontFamily: fonts.Medium,
-    fontSize: 18,
-    color: colors.Orange,
   },
 });

@@ -3,13 +3,26 @@ import React, { useEffect } from "react";
 import useResponsive from "@hooks/useResponsive";
 import { colors } from "@themes/colors";
 import HomeDescText from "@components/molecules/HomeDescText";
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
 
 const WIDTH = Dimensions.get("window").width;
 
-const HomeDesc = ({ position = "left", color, image, type, title, desc, animatedPoinEnter, animatedPoinExit }) => {
+const HomeDesc = ({
+  position = "left",
+  color,
+  image,
+  type,
+  title,
+  desc,
+  animatedPoinEnter,
+  animatedPoinExit,
+}) => {
   const opacityAnim = useSharedValue(0);
   const translateXLeftAnim = useSharedValue(-50);
   const translateXRightAnim = useSharedValue(50);
@@ -59,17 +72,58 @@ const HomeDesc = ({ position = "left", color, image, type, title, desc, animated
   }, [scroll]);
 
   return (
-    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
-      <Animated.View style={[isTabletOrMobileDevice ? styles.descContainerMobile : styles.descContainer, position === "right" ? animatedRightStyle : animatedLeftStyle]}>
-        {isTabletOrMobileDevice || position === "right" ? (
-          <>
-            <Image source={image} style={[styles.image, isTabletOrMobileDevice ? styles.imageMobile : styles.imageWeb]} />
-            <HomeDescText color={color} type={type} title={title} desc={desc} isMobile={isTabletOrMobileDevice} />
-          </>
+    <View
+      style={[
+        styles.container,
+        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
+      ]}
+    >
+      <Animated.View
+        style={[
+          isTabletOrMobileDevice
+            ? styles.descContainerMobile
+            : styles.descContainer,
+          !isTabletOrMobileDevice
+            ? position === "right"
+              ? animatedRightStyle
+              : animatedLeftStyle
+            : null,
+        ]}
+      >
+        {!isTabletOrMobileDevice ? (
+          position === "right" ? (
+            <>
+              <Image source={image} style={[styles.image, styles.imageWeb]} />
+              <HomeDescText
+                color={color}
+                type={type}
+                title={title}
+                desc={desc}
+                isMobile={isTabletOrMobileDevice}
+              />
+            </>
+          ) : (
+            <>
+              <HomeDescText
+                color={color}
+                type={type}
+                title={title}
+                desc={desc}
+                isMobile={isTabletOrMobileDevice}
+              />
+              <Image source={image} style={[styles.image, styles.imageWeb]} />
+            </>
+          )
         ) : (
           <>
-            <HomeDescText color={color} type={type} title={title} desc={desc} isMobile={isTabletOrMobileDevice} />
-            <Image source={image} style={[styles.image, isTabletOrMobileDevice ? styles.imageMobile : styles.imageWeb]} />
+            <Image source={image} style={[styles.image, styles.imageMobile]} />
+            <HomeDescText
+              color={color}
+              type={type}
+              title={title}
+              desc={desc}
+              isMobile={isTabletOrMobileDevice}
+            />
           </>
         )}
       </Animated.View>

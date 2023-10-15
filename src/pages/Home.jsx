@@ -61,12 +61,8 @@ const Home = ({ navigation }) => {
         title="We Protect"
         desc="Provide a shield against a multitude of potential threats, including corrosion from moisture and chemicals, abrasion and wear from mechanical forces, and damage from UV radiation and weathering"
         position="right"
-        animatedPoinEnter={
-          isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 560 : HEIGHT + 520 + 300
-        }
-        animatedPoinExit={
-          isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 360 : HEIGHT + 300
-        }
+        animatedPoinEnter={HEIGHT + 520 + 300}
+        animatedPoinExit={HEIGHT + 300}
       />
       <HomeProduct />
       <HomeGallery />
