@@ -7,11 +7,11 @@ const HomeStartTitle = ({ mobile }) => {
   return (
     <View style={mobile ? styles.containerMobile : styles.container}>
       <Text style={[styles.title, !mobile ? styles.titleWeb : null]}>
-        WELCOME TO PT INTI JAKA RAYA
+        WELCOME TO PT INTI JAKARAYA
       </Text>
       <Text style={[styles.subTitle, !mobile ? styles.titleWeb : null]}>
-        PT INTI JAKA RAYA was established in 2017 located in Bandung West Java –
-        Indonesia. PT INTI JAKA RAYA is a Sole Distributor for UNIQUE POLYMER
+        PT INTI JAKARAYA was established in 2017 located in Bandung West Java –
+        Indonesia. PT INTI JAKARAYA is a Sole Distributor for UNIQUE POLYMER
         SYSTEMS Made in UK, in Indonesia.
       </Text>
     </View>
