@@ -49,7 +49,7 @@ const WhatWeDoStory = () => {
       ]}
     >
       <Text style={styles.story}>
-        {`PT INTI JAKA RAYA was established in 2017 located in Bandung West Java – Indonesia. PT INTI JAKA RAYA is a Sole Distributor for UNIQUE POLYMER SYSTEMS Made in UK, in Indonesia.\n\nPT INTI JAKA RAYA provides innovative business solution to our customers that have fluid flow system problems, such as : erosion, corrosion, cavitation, dry abrasive, chemical attack concrete problem, floor protection and etc.`}
+        {`PT INTI JAKARAYA was established in 2017 located in Bandung West Java – Indonesia. PT INTI JAKARAYA is a Sole Distributor for UNIQUE POLYMER SYSTEMS Made in UK, in Indonesia.\n\nPT INTI JAKARAYA provides innovative business solution to our customers that have fluid flow system problems, such as : erosion, corrosion, cavitation, dry abrasive, chemical attack concrete problem, floor protection and etc.`}
       </Text>
     </Animated.View>
   );
