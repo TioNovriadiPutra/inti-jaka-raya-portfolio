@@ -3,12 +3,17 @@ import React from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 import ButtonText from "@components/atoms/ButtonText";
+import { dataNewsLetter } from "@utils/constant/newsletterData";
 
 const NewsletterTitle = ({ isMobile }) => {
   return (
     <View style={!isMobile && styles.containerWeb}>
       <Text style={styles.title}>Newsletter</Text>
-      {!isMobile && <ButtonText label="See More" />}
+      {!isMobile ? (
+        dataNewsLetter[0].image ? (
+          <ButtonText label="See More" />
+        ) : null
+      ) : null}
     </View>
   );
 };

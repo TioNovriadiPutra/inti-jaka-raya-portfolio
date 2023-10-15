@@ -11,18 +11,17 @@ import DrawerButton from "@components/atoms/DrawerButton";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { navState } from "@store/navState";
 import { scrollState } from "@store/scrollState";
+import { dataNewsLetter } from "@utils/constant/newsletterData";
 
 const CustomDrawer = ({ showModal, setShowModal, scrollRef }) => {
   const nav = useRecoilValue(navState);
   const setScroll = useSetRecoilState(scrollState);
 
   const heightAnim = useSharedValue(0);
-  const opacityAnim = useSharedValue(0);
 
   const heightAnimatedStyle = useAnimatedStyle(() => {
     return {
       height: heightAnim.value,
-      opacity: opacityAnim.value,
     };
   });
 
@@ -31,9 +30,6 @@ const CustomDrawer = ({ showModal, setShowModal, scrollRef }) => {
       duration: 800,
       easing: Easing.ease,
     });
-    setTimeout(() => {
-      opacityAnim.value = withTiming(0, { duration: 800 });
-    }, 200);
     setTimeout(() => {
       setShowModal(false);
     }, 1000);
@@ -56,9 +52,6 @@ const CustomDrawer = ({ showModal, setShowModal, scrollRef }) => {
         duration: 800,
         easing: Easing.ease,
       });
-      setTimeout(() => {
-        opacityAnim.value = withTiming(1, { duration: 800 });
-      }, 200);
     }
   }, [showModal]);
 
@@ -76,10 +69,12 @@ const CustomDrawer = ({ showModal, setShowModal, scrollRef }) => {
       >
         <Animated.View style={[styles.btnContainer, heightAnimatedStyle]}>
           <DrawerButton label="Home" onPress={() => handleChangePage("Home")} />
-          <DrawerButton
-            label="Newsletter"
-            onPress={() => handleChangePage("Newsletter")}
-          />
+          {dataNewsLetter[0].image && (
+            <DrawerButton
+              label="Newsletter"
+              onPress={() => handleChangePage("Newsletter")}
+            />
+          )}
           <DrawerButton
             label="About"
             onPress={() => handleChangePage("About")}
@@ -111,5 +106,6 @@ const styles = StyleSheet.create({
     gap: 32,
     borderWidth: 1,
     borderColor: colors.DrawerBorder,
+    overflow: "hidden",
   },
 });

@@ -4,6 +4,7 @@ import NavbarButton from "@components/atoms/NavbarButton";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { navState } from "@store/navState";
 import { scrollState } from "@store/scrollState";
+import { dataNewsLetter } from "@utils/constant/newsletterData";
 
 const NavbarButtonSection = ({
   white,
@@ -35,11 +36,13 @@ const NavbarButtonSection = ({
         white={white}
         onPress={() => handleChangePage("About")}
       />
-      <NavbarButton
-        label="Newsletter"
-        white={white}
-        onPress={() => handleChangePage("Newsletter")}
-      />
+      {dataNewsLetter[0].image && (
+        <NavbarButton
+          label="Newsletter"
+          white={white}
+          onPress={() => handleChangePage("Newsletter")}
+        />
+      )}
       <NavbarButton
         label="Contact"
         white
