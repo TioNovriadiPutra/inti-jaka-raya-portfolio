@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   containerMobile: {
     paddingHorizontal: 20,
-    paddingTop: 265,
+    paddingTop: 60,
     gap: 60,
   },
 });
