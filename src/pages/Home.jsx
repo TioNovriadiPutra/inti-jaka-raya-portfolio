@@ -12,15 +12,12 @@ import HomeGallery from "@components/organisms/HomeGallery";
 import { pageState } from "@store/scrollState";
 import Contact from "@components/organisms/Contact";
 import { useIsFocused } from "@react-navigation/native";
-import useResponsive from "@hooks/useResponsive";
 
 const HEIGHT = Dimensions.get("window").height;
 
 const Home = ({ navigation }) => {
   const setNav = useSetRecoilState(navState);
   const setPage = useSetRecoilState(pageState);
-
-  const { isTabletOrMobileDevice } = useResponsive();
 
   const isFocused = useIsFocused();
 
@@ -34,11 +31,7 @@ const Home = ({ navigation }) => {
   }, [isFocused]);
 
   return (
-    <MainContainer
-      withParallax
-      parallaxImage={require("@assets/images/startBg.png")}
-      scrollRef={scrollRef}
-    >
+    <MainContainer withParallax parallaxImage={require("@assets/images/startBg.png")} scrollRef={scrollRef}>
       <HomeStart scrollRef={scrollRef} />
       <HomeNewsletter />
       <HomeDesc
@@ -47,12 +40,8 @@ const Home = ({ navigation }) => {
         type="Rebuild"
         title="We Rebuild"
         desc="Coatings play a critical role in industrial repair processes. They are used to restore or enhance the performance and longevity of various industrial components and structures. Here are some ways coatings are applied in industrial repair"
-        animatedPoinEnter={
-          isTabletOrMobileDevice ? HEIGHT + 552 * 2 + 60 : HEIGHT + 520
-        }
-        animatedPoinExit={
-          isTabletOrMobileDevice ? HEIGHT + 552 * 2 : HEIGHT + 300
-        }
+        animatedPoinEnter={HEIGHT + 520}
+        animatedPoinExit={HEIGHT - 450}
       />
       <HomeDesc
         color={colors.Orange}
@@ -62,7 +51,7 @@ const Home = ({ navigation }) => {
         desc="Provide a shield against a multitude of potential threats, including corrosion from moisture and chemicals, abrasion and wear from mechanical forces, and damage from UV radiation and weathering"
         position="right"
         animatedPoinEnter={HEIGHT + 520 + 300}
-        animatedPoinExit={HEIGHT + 300}
+        animatedPoinExit={HEIGHT - 450}
       />
       <HomeProduct />
       <HomeGallery />

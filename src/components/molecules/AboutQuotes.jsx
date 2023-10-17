@@ -3,12 +3,7 @@ import React, { useEffect } from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 const AboutQuotes = () => {
   const { isTabletOrMobileDevice } = useResponsive();
@@ -42,35 +37,14 @@ const AboutQuotes = () => {
   }, []);
 
   return (
-    <View
-      style={[
-        styles.container,
-        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
-      ]}
-    >
-      <Animated.Text
-        style={[
-          styles.title,
-          isTabletOrMobileDevice ? styles.titleMobile : styles.titleWeb,
-          titleAnimatedStyle,
-        ]}
-      >
+    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
+      <Animated.Text style={[styles.title, isTabletOrMobileDevice ? styles.titleMobile : styles.titleWeb, titleAnimatedStyle]}>
         We Are Committed To Providing{`\n`}
         <Text style={styles.success}>The Best Product & Services</Text>
       </Animated.Text>
 
-      <Animated.View
-        style={[
-          isTabletOrMobileDevice
-            ? styles.quotesContainerMobile
-            : styles.quotesContainerWeb,
-          quotesAnimatedStyle,
-        ]}
-      >
-        <Text style={styles.quotes}>
-          Our Product Can Help Increase Efficiencies, Reduce Cost, Save Time,
-          And Increase Machinery & Building Structures Lifetime
-        </Text>
+      <Animated.View style={[isTabletOrMobileDevice ? styles.quotesContainerMobile : styles.quotesContainerWeb, quotesAnimatedStyle]}>
+        <Text style={styles.quotes}>Our Product Can Help Increase Efficiencies, Reduce Cost, Save Time, And Increase Machinery & Building Structures Lifetime</Text>
       </Animated.View>
     </View>
   );
@@ -83,13 +57,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   containerWeb: {
-    marginHorizontal: 113,
-    paddingTop: 164,
     gap: 99,
   },
   containerMobile: {
-    marginHorizontal: 8,
-    paddingTop: 157,
     gap: 90,
   },
   title: {

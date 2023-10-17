@@ -1,20 +1,8 @@
-import {
-  Dimensions,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { colors } from "@themes/colors";
 import { fonts } from "@themes/fonts";
-import Animated, {
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { pageState, scrollState } from "@store/scrollState";
 import { navState } from "@store/navState";
@@ -34,11 +22,7 @@ const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
   const scaleAnim = useSharedValue(1);
 
   const animatedShadowStyle = useAnimatedStyle(() => {
-    const shadowColor = interpolateColor(
-      shadowAnim.value,
-      [0, 1],
-      [colors.White, colors.Black]
-    );
+    const shadowColor = interpolateColor(shadowAnim.value, [0, 1], [colors.White, colors.Black]);
 
     return {
       shadowColor,
@@ -50,11 +34,7 @@ const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
   });
 
   const animatedTextStyle = useAnimatedStyle(() => {
-    const textColor = interpolateColor(
-      readMoreAnim.value,
-      [0, 1],
-      [colors.Orange, colors.Blue]
-    );
+    const textColor = interpolateColor(readMoreAnim.value, [0, 1], [colors.Orange, colors.Blue]);
 
     return {
       color: textColor,
@@ -113,7 +93,7 @@ const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
     if (!isMobile && !isNewsletter) {
       if (scroll >= HEIGHT - 450) {
         handleEnter();
-      } else if (scroll < HEIGHT - 450) {
+      } else if (scroll === 0) {
         handleExit();
       }
     }
@@ -121,25 +101,12 @@ const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
 
   return (
     <Animated.View
-      style={[
-        styles.cardContainer,
-        isMobile ? styles.cardContainerMobile : styles.cardContainerWeb,
-        animatedShadowStyle,
-        !isMobile && !isNewsletter ? animatedOpacityStyle : null,
-      ]}
+      style={[styles.cardContainer, isMobile ? styles.cardContainerMobile : styles.cardContainerWeb, animatedShadowStyle, !isMobile && !isNewsletter ? animatedOpacityStyle : null]}
       onMouseEnter={onHoverInShadow}
       onMouseLeave={onHoverOutShadow}
     >
-      <Image
-        source={data.image}
-        style={[styles.image, isMobile ? styles.imageMobile : styles.imageWeb]}
-      />
-      <View
-        style={[
-          styles.descContainer,
-          isMobile ? styles.descContainerMobile : styles.descContainerWeb,
-        ]}
-      >
+      <Image source={data.image} style={[styles.image, isMobile ? styles.imageMobile : styles.imageWeb]} />
+      <View style={[styles.descContainer, isMobile ? styles.descContainerMobile : styles.descContainerWeb]}>
         <Text style={styles.title}>{data.title}</Text>
         <Text style={styles.date}>{data.date}</Text>
         <Text style={styles.news} numberOfLines={isMobile ? 7 : 4}>
@@ -147,12 +114,7 @@ const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
         </Text>
       </View>
       {data.image && (
-        <Pressable
-          style={styles.btn}
-          onHoverIn={onHoverIn}
-          onHoverOut={onHoverOut}
-          onPress={handleReadMore}
-        >
+        <Pressable style={styles.btn} onHoverIn={onHoverIn} onHoverOut={onHoverOut} onPress={handleReadMore}>
           <Animated.Text style={animatedTextStyle}>Read More</Animated.Text>
         </Pressable>
       )}

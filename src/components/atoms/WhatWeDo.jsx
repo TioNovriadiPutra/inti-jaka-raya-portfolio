@@ -3,11 +3,7 @@ import React, { useEffect } from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
 
@@ -33,22 +29,18 @@ const WhatWeDo = ({ color, question, title, func }) => {
 
   useEffect(() => {
     if (func === "whatWeDo") {
-      if (isTabletOrMobileDevice ? scroll >= 724 : scroll >= HEIGHT + 64) {
+      if (isTabletOrMobileDevice ? scroll >= HEIGHT - 300 : scroll >= HEIGHT) {
         opacityAnim.value = withTiming(1, { duration: 1000 });
         translateXAnim.value = withTiming(0, { duration: 1000 });
-      } else if (isTabletOrMobileDevice ? scroll <= 224 : scroll <= 504) {
+      } else if (scroll === 0) {
         opacityAnim.value = withTiming(0, { duration: 1000 });
         translateXAnim.value = withTiming(-50, { duration: 1000 });
       }
     } else {
-      if (
-        isTabletOrMobileDevice
-          ? scroll >= HEIGHT * 2 - 300
-          : scroll >= HEIGHT * 2 - 100
-      ) {
+      if (isTabletOrMobileDevice ? scroll >= HEIGHT + 200 : scroll >= HEIGHT + 500) {
         opacityAnim.value = withTiming(1, { duration: 1000 });
         translateXAnim.value = withTiming(0, { duration: 1000 });
-      } else if (scroll <= HEIGHT * 2 - 500) {
+      } else if (isTabletOrMobileDevice ? scroll <= HEIGHT - 300 : scroll <= HEIGHT) {
         opacityAnim.value = withTiming(0, { duration: 1000 });
         translateXAnim.value = withTiming(-50, { duration: 1000 });
       }
@@ -56,29 +48,9 @@ const WhatWeDo = ({ color, question, title, func }) => {
   }, [scroll]);
 
   return (
-    <Animated.View
-      style={[
-        !isTabletOrMobileDevice && styles.container,
-        whatWeDoAnimatedStyle,
-      ]}
-    >
-      <Text
-        style={[
-          styles.question,
-          isTabletOrMobileDevice ? styles.questionMobile : styles.questionWeb,
-          { color: color },
-        ]}
-      >
-        {question}
-      </Text>
-      <Text
-        style={[
-          styles.do,
-          isTabletOrMobileDevice ? styles.doMobile : styles.doWeb,
-        ]}
-      >
-        {title}
-      </Text>
+    <Animated.View style={[!isTabletOrMobileDevice && styles.container, whatWeDoAnimatedStyle]}>
+      <Text style={[styles.question, isTabletOrMobileDevice ? styles.questionMobile : styles.questionWeb, { color: color }]}>{question}</Text>
+      <Text style={[styles.do, isTabletOrMobileDevice ? styles.doMobile : styles.doWeb]}>{title}</Text>
     </Animated.View>
   );
 };
