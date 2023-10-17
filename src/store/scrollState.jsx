@@ -15,4 +15,9 @@ const pageState = atom({
   default: null,
 });
 
-export { scrollState, pageState, scrollRefState };
+const scrollCarouselState = atom({
+  key: "scrollCarouselState",
+  default: 0,
+});
+
+export { scrollState, pageState, scrollRefState, scrollCarouselState };

@@ -9,12 +9,7 @@ const HomeGallery = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View
-      style={[
-        styles.container,
-        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
-      ]}
-    >
+    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
       <HomeGalleryTitle isMobile={isTabletOrMobileDevice} />
       <HomeGalleryCarousel isMobile={isTabletOrMobileDevice} />
     </View>
@@ -30,7 +25,6 @@ const styles = StyleSheet.create({
   containerWeb: {
     paddingTop: 46,
     paddingBottom: 56,
-    gap: 96,
   },
   containerMobile: {
     paddingHorizontal: 20,

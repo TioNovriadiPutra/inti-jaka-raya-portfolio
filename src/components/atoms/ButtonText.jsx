@@ -6,7 +6,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { navState } from "@store/navState";
 import { scrollState } from "@store/scrollState";
 
-const ButtonText = ({ label, isMobile, onPress }) => {
+const ButtonText = ({ label, isMobile }) => {
   const nav = useRecoilValue(navState);
   const setScroll = useSetRecoilState(scrollState);
 
@@ -61,12 +61,7 @@ const ButtonText = ({ label, isMobile, onPress }) => {
       >
         {label}
       </Animated.Text>
-      <Animated.View
-        style={[
-          styles.line,
-          { width: lineAnim, alignSelf: isMobile ? "center" : "auto" },
-        ]}
-      />
+      <Animated.View style={[styles.line, { width: lineAnim, alignSelf: isMobile ? "center" : "auto" }]} />
     </Pressable>
   );
 };
