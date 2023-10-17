@@ -2,11 +2,7 @@ import { Dimensions, Image, StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { colors } from "@themes/colors";
 import { fonts } from "@themes/fonts";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
 import useResponsive from "@hooks/useResponsive";
@@ -32,16 +28,12 @@ const MissionBox = ({ icon, desc, title, index }) => {
   });
 
   useEffect(() => {
-    if (
-      isTabletOrMobileDevice
-        ? scroll >= HEIGHT * 2 - 300
-        : scroll >= HEIGHT * 2 - 100
-    ) {
+    if (isTabletOrMobileDevice ? scroll >= HEIGHT + 200 : scroll >= HEIGHT + 500) {
       setTimeout(() => {
         opacityAnim.value = withTiming(1, { duration: 800 });
         translateYAnim.value = withTiming(0, { duration: 800 });
       }, 300 * index);
-    } else if (scroll <= HEIGHT * 2 - 500) {
+    } else if (isTabletOrMobileDevice ? scroll <= HEIGHT - 300 : scroll <= HEIGHT) {
       opacityAnim.value = withTiming(0, { duration: 300 });
       translateYAnim.value = withTiming(50, { duration: 300 });
     }
