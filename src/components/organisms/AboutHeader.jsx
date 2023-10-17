@@ -11,13 +11,7 @@ const AboutHeader = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <ImageBackground
-      source={require("@assets/images/aboutBg.png")}
-      style={[
-        styles.container,
-        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
-      ]}
-    >
+    <ImageBackground source={require("@assets/images/aboutBg.png")} style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
       <View style={styles.backdrop}>
         <AboutQuotes />
       </View>
@@ -42,5 +36,7 @@ const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
     backgroundColor: colors.Backdrop,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

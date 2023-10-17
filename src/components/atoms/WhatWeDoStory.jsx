@@ -3,11 +3,7 @@ import React, { useEffect } from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
 
@@ -32,22 +28,17 @@ const WhatWeDoStory = () => {
   });
 
   useEffect(() => {
-    if (isTabletOrMobileDevice ? scroll >= 724 : scroll >= HEIGHT + 64) {
+    if (isTabletOrMobileDevice ? scroll >= HEIGHT - 300 : scroll >= HEIGHT) {
       opacityAnim.value = withTiming(1, { duration: 1000 });
       translateXAnim.value = withTiming(0, { duration: 1000 });
-    } else if (isTabletOrMobileDevice ? scroll <= 224 : scroll <= 504) {
+    } else if (scroll === 0) {
       opacityAnim.value = withTiming(0, { duration: 1000 });
       translateXAnim.value = withTiming(50, { duration: 1000 });
     }
   }, [scroll]);
 
   return (
-    <Animated.View
-      style={[
-        !isTabletOrMobileDevice && styles.container,
-        whatWeDoStoryAnimatedStyle,
-      ]}
-    >
+    <Animated.View style={[!isTabletOrMobileDevice && styles.container, whatWeDoStoryAnimatedStyle]}>
       <Text style={styles.story}>
         {`PT INTI JAKARAYA was established in 2017 located in Bandung West Java – Indonesia. PT INTI JAKARAYA is a Sole Distributor for UNIQUE POLYMER SYSTEMS Made in UK, in Indonesia.\n\nPT INTI JAKARAYA provides innovative business solution to our customers that have fluid flow system problems, such as : erosion, corrosion, cavitation, dry abrasive, chemical attack concrete problem, floor protection and etc.`}
       </Text>
