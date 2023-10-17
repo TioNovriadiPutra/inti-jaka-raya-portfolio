@@ -30,6 +30,8 @@ const HomeGalleryCarousel = ({ isMobile }) => {
         {!isMobile && <ButtonNext func="previous" onPress={handlePrevious} />}
 
         <Carousel
+          enabled={false}
+          pagingEnabled
           ref={listRef}
           loop={true}
           data={carouselData}

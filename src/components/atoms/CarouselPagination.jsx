@@ -4,8 +4,6 @@ import Animated, { Extrapolate, interpolate, interpolateColor, useAnimatedStyle 
 import { colors } from "@themes/colors";
 
 const CarouselPagination = ({ data, index }) => {
-  console.log(index);
-
   return (
     <View style={styles.dotView}>
       {data.map((_, i) => {
