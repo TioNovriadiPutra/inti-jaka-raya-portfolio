@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 const HEIGHT = Dimensions.get("window").height;
 

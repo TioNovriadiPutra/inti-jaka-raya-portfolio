@@ -8,8 +8,6 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-na
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
 
-const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
-
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height;
 
@@ -47,20 +45,18 @@ const HomeProductCard = ({ isMobile }) => {
   }
 
   return (
-    <AnimatedImageBackground
-      source={require("@assets/images/product.png")}
-      style={[styles.container, isMobile ? styles.containerMobile : styles.containerWeb, !isMobile && scaleAnimatedStyle]}
-      imageStyle={styles.container}
-    >
-      <LinearGradient colors={[colors.Black, "transparent"]} start={[0, 1]} end={[0, -1]} style={[styles.backdrop, isMobile ? styles.backdropMobile : styles.backdropWeb]}>
-        <DescType color={colors.WhiteBlur} title="Our Product" />
-        <Text style={styles.title}>Unique Polymer Systems (UPS)</Text>
-        <Text style={[styles.desc, isMobile ? styles.descMobile : styles.descWeb]}>
-          UPS are able to offer unique solutions such as fluid flow equipment linings to corrosion protection for offshore platforms. Our unique solutions can be applied throughout all industrial
-          sectors; Oil & Gas, Marine (ThistleBond), Power Generation, Paper & Pulp, Chemical & Corrosion, Water & Wastewater, Petrochemical & General Industry.
-        </Text>
-      </LinearGradient>
-    </AnimatedImageBackground>
+    <Animated.View style={[styles.container, isMobile ? styles.containerMobile : styles.containerWeb, !isMobile && scaleAnimatedStyle]}>
+      <ImageBackground source={require("@assets/images/product.png")} style={styles.backgroundImage} imageStyle={styles.container}>
+        <LinearGradient colors={[colors.Black, "transparent"]} start={[0, 1]} end={[0, -1]} style={[styles.backdrop, isMobile ? styles.backdropMobile : styles.backdropWeb]}>
+          <DescType color={colors.WhiteBlur} title="Our Product" />
+          <Text style={styles.title}>Unique Polymer Systems (UPS)</Text>
+          <Text style={[styles.desc, isMobile ? styles.descMobile : styles.descWeb]}>
+            UPS are able to offer unique solutions such as fluid flow equipment linings to corrosion protection for offshore platforms. Our unique solutions can be applied throughout all industrial
+            sectors; Oil & Gas, Marine (ThistleBond), Power Generation, Paper & Pulp, Chemical & Corrosion, Water & Wastewater, Petrochemical & General Industry.
+          </Text>
+        </LinearGradient>
+      </ImageBackground>
+    </Animated.View>
   );
 };
 
@@ -77,6 +73,9 @@ const styles = StyleSheet.create({
   containerMobile: {
     width: WIDTH - 40,
     height: 466,
+  },
+  backgroundImage: {
+    flex: 1,
     resizeMode: "contain",
   },
   backdrop: {

@@ -8,7 +8,6 @@ import { pageState, scrollState } from "@store/scrollState";
 import { navState } from "@store/navState";
 
 const HEIGHT = Dimensions.get("window").height;
-const WIDTH = Dimensions.get("window").width;
 
 const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
   const scroll = useRecoilValue(scrollState);
