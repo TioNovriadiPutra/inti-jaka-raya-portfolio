@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npx expo export:web",
+  "buildCommand": "GENERATE_SOURCEMAP=false expo export:web",
   "outputDirectory": "web-build",
   "devCommand": "expo",
   "cleanUrls": true,
