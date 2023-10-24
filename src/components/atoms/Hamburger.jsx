@@ -1,17 +1,14 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import { useSetRecoilState } from "recoil";
+import { showDrawerState } from "@store/navState";
 
-const Hamburger = ({ blue, setShowDrawer }) => {
+const Hamburger = ({ blue }) => {
+  const setShowDrawer = useSetRecoilState(showDrawerState);
+
   return (
     <TouchableOpacity onPress={() => setShowDrawer(true)}>
-      <Image
-        source={
-          blue
-            ? require("@assets/images/hamburgerBlue.png")
-            : require("@assets/images/hamburger.png")
-        }
-        style={styles.icon}
-      />
+      <Image source={blue ? require("@assets/images/hamburgerBlue.png") : require("@assets/images/hamburger.png")} style={styles.icon} />
     </TouchableOpacity>
   );
 };

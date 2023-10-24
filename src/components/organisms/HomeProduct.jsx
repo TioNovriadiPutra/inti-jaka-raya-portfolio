@@ -4,12 +4,22 @@ import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
 import HomeProductCard from "@components/molecules/HomeProductCard";
 import ProductModal from "@components/templates/ProductModal";
+import { useSetRecoilState } from "recoil";
+import { productPositionState } from "@store/productState";
 
 const HomeProduct = () => {
+  const setProductPosition = useSetRecoilState(productPositionState);
+
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
+    <View
+      style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}
+      onLayout={(event) => {
+        const layout = event.nativeEvent.layout;
+        setProductPosition(layout.y);
+      }}
+    >
       <HomeProductCard isMobile={isTabletOrMobileDevice} />
       <ProductModal />
     </View>
