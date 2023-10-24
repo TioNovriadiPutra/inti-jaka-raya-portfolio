@@ -1,12 +1,15 @@
-import { Dimensions, ImageBackground, StyleSheet, Text } from "react-native";
+import { Dimensions, ImageBackground, Pressable, StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "@themes/colors";
 import DescType from "@components/atoms/DescType";
 import { fonts } from "@themes/fonts";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { scrollState } from "@store/scrollState";
+import { showProductModalState } from "@store/productState";
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height;
@@ -16,6 +19,9 @@ const HomeProductCard = ({ isMobile }) => {
 
   const opacityAnim = useSharedValue(0);
   const translateYAnim = useSharedValue(50);
+  const hoverAnim = useSharedValue(1);
+
+  const setShowProductModal = useSetRecoilState(showProductModalState);
 
   const scaleAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -23,6 +29,24 @@ const HomeProductCard = ({ isMobile }) => {
       transform: [{ translateY: translateYAnim.value }],
     };
   });
+
+  const hoverAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: hoverAnim.value }],
+    };
+  });
+
+  const handleHoverIn = () => {
+    hoverAnim.value = withTiming(1.05, { duration: 300 });
+  };
+
+  const handleHoverOut = () => {
+    hoverAnim.value = withTiming(1, { duration: 300 });
+  };
+
+  const handlePress = () => {
+    setShowProductModal(true);
+  };
 
   const handleEnter = () => {
     opacityAnim.value = withTiming(1, { duration: 1000 });
@@ -45,7 +69,12 @@ const HomeProductCard = ({ isMobile }) => {
   }
 
   return (
-    <Animated.View style={[styles.container, isMobile ? styles.containerMobile : styles.containerWeb, !isMobile && scaleAnimatedStyle]}>
+    <AnimatedPressable
+      onHoverIn={handleHoverIn}
+      onHoverOut={handleHoverOut}
+      style={[styles.container, isMobile ? styles.containerMobile : styles.containerWeb, !isMobile && scaleAnimatedStyle, !isMobile && hoverAnimatedStyle]}
+      onPress={handlePress}
+    >
       <ImageBackground source={require("@assets/images/product.png")} style={styles.backgroundImage} imageStyle={styles.container}>
         <LinearGradient colors={[colors.Black, "transparent"]} start={[0, 1]} end={[0, -1]} style={[styles.backdrop, isMobile ? styles.backdropMobile : styles.backdropWeb]}>
           <DescType color={colors.WhiteBlur} title="Our Product" />
@@ -56,7 +85,7 @@ const HomeProductCard = ({ isMobile }) => {
           </Text>
         </LinearGradient>
       </ImageBackground>
-    </Animated.View>
+    </AnimatedPressable>
   );
 };
 

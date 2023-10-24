@@ -10,6 +10,7 @@ export const colors = {
   LightGrey: "#F6F7FC",
   DarkGrey: "#A7A7A7",
   BorderGrey: "#CACACA",
+  DropdownBorder: "#D4D4D4",
   DescGrey: "#555555",
   NewsGrey: "#797979",
   Placeholder: "#A6A6A6",
