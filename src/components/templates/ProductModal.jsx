@@ -1,4 +1,4 @@
-import { Dimensions, Image, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { Dimensions, Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { openDrop1State, openDrop2State, productState, showProductModalState } from "@store/productState";
@@ -8,6 +8,7 @@ import ProductTitle from "@components/atoms/ProductTitle";
 import ProductCategoryDropdown from "@components/atoms/ProductCategoryDropdown";
 import ProductList from "@components/organisms/ProductList";
 import useResponsive from "@hooks/useResponsive";
+import { fonts } from "@themes/fonts";
 
 const HEIGHT = Dimensions.get("window").height;
 

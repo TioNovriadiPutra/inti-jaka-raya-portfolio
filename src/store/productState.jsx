@@ -30,4 +30,14 @@ const listIndexState = atom({
   default: 0,
 });
 
-export { showProductModalState, openDrop1State, openDrop2State, categoryState, productState, listIndexState };
+const showMobileModalImageState = atom({
+  key: "showMobileModalImageState",
+  default: false,
+});
+
+const modalImageState = atom({
+  key: "modalImageState",
+  default: null,
+});
+
+export { showProductModalState, openDrop1State, openDrop2State, categoryState, productState, listIndexState, showMobileModalImageState, modalImageState };
