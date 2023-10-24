@@ -3,17 +3,15 @@ import React from "react";
 import NavbarButton from "@components/atoms/NavbarButton";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { navState } from "@store/navState";
-import { scrollState } from "@store/scrollState";
+import { pageState, scrollState } from "@store/scrollState";
 import { dataNewsLetter } from "@utils/constant/newsletterData";
+import { productPositionState } from "@store/productState";
 
-const NavbarButtonSection = ({
-  white,
-  withBorder,
-  withBackground,
-  scrollRef,
-}) => {
+const NavbarButtonSection = ({ white, withBorder, withBackground, scrollRef }) => {
   const nav = useRecoilValue(navState);
+  const page = useRecoilValue(pageState);
   const setScroll = useSetRecoilState(scrollState);
+  const productPosition = useRecoilValue(productPositionState);
 
   const handleChangePage = (dest) => {
     setScroll(0);
@@ -24,32 +22,17 @@ const NavbarButtonSection = ({
     scrollRef.current.scrollToEnd({ animation: true });
   };
 
+  const handleScrollToProduct = () => {
+    scrollRef.current.scrollTo({ x: 0, y: productPosition - 80 });
+  };
+
   return (
     <View style={styles.btnContainer}>
-      <NavbarButton
-        label="Home"
-        white={white}
-        onPress={() => handleChangePage("Home")}
-      />
-      <NavbarButton
-        label="About"
-        white={white}
-        onPress={() => handleChangePage("About")}
-      />
-      {dataNewsLetter[0].image && (
-        <NavbarButton
-          label="Newsletter"
-          white={white}
-          onPress={() => handleChangePage("Newsletter")}
-        />
-      )}
-      <NavbarButton
-        label="Contact"
-        white
-        withBorder={withBorder}
-        withBackground={withBackground}
-        onPress={handleScrollEnd}
-      />
+      <NavbarButton label="Home" white={white} onPress={() => handleChangePage("Home")} />
+      <NavbarButton label="About" white={white} onPress={() => handleChangePage("About")} />
+      {page === "Home" && <NavbarButton label="Product" white={white} onPress={handleScrollToProduct} />}
+      {dataNewsLetter[0].image && <NavbarButton label="Newsletter" white={white} onPress={() => handleChangePage("Newsletter")} />}
+      <NavbarButton label="Contact" white withBorder={withBorder} withBackground={withBackground} onPress={handleScrollEnd} />
     </View>
   );
 };

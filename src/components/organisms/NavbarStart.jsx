@@ -1,43 +1,20 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import NavbarButtonSection from "@components/molecules/NavbarButtonSection";
-import Hamburger from "@components/atoms/Hamburger";
-import CustomDrawer from "@components/templates/CustomDrawer";
 
 const NavbarStart = ({ mobile, scrollRef }) => {
-  const [showDrawer, setShowDrawer] = useState(false);
-
   const handleBackHome = () => {
     setScroll(0);
     nav.navigate("Home");
   };
 
   return (
-    <View
-      style={[
-        styles.container,
-        mobile === true ? styles.containerMobile : styles.containerWeb,
-      ]}
-    >
+    <View style={[styles.container, mobile === true ? styles.containerMobile : styles.containerWeb]}>
       <TouchableOpacity onPress={handleBackHome}>
-        <Image
-          source={
-            mobile
-              ? require("@assets/images/logoWhiteMobile.png")
-              : require("@assets/images/logoWhite.png")
-          }
-          style={mobile ? styles.logoMobile : styles.logo}
-        />
+        <Image source={mobile ? require("@assets/images/logoWhiteMobile.png") : require("@assets/images/logoWhite.png")} style={mobile ? styles.logoMobile : styles.logo} />
       </TouchableOpacity>
-      {mobile ? (
-        <Hamburger setShowDrawer={setShowDrawer} />
-      ) : (
-        <NavbarButtonSection white withBorder scrollRef={scrollRef} />
-      )}
 
-      {mobile && (
-        <CustomDrawer showModal={showDrawer} setShowModal={setShowDrawer} />
-      )}
+      {!mobile && <NavbarButtonSection white withBorder scrollRef={scrollRef} />}
     </View>
   );
 };
