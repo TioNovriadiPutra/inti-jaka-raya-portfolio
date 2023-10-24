@@ -25,4 +25,9 @@ const productState = atom({
   default: null,
 });
 
-export { showProductModalState, openDrop1State, openDrop2State, categoryState, productState };
+const listIndexState = atom({
+  key: "listIndexState",
+  default: 0,
+});
+
+export { showProductModalState, openDrop1State, openDrop2State, categoryState, productState, listIndexState };

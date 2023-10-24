@@ -24,6 +24,14 @@ const ProductCategoryDropdown = ({ zIndex, open, setOpen, handlePress, type }) =
     };
   });
 
+  const arrowAnimatedStyle = useAnimatedStyle(() => {
+    const rotate = interpolate(dropdownAnim.value, [0, 1], [0, 180]);
+
+    return {
+      transform: [{ rotate: `${rotate}deg` }],
+    };
+  });
+
   const handleOpen = () => {
     dropdownAnim.value = withTiming(1, { duration: 500 });
   };
@@ -52,12 +60,14 @@ const ProductCategoryDropdown = ({ zIndex, open, setOpen, handlePress, type }) =
         <Text style={[styles.label, { color: type === "category" ? (category ? colors.Black : colors.Grey) : product ? colors.Black : colors.Grey }]}>
           {type === "category" ? (category ? category.productCategory : "Choose Product Category") : product ? product.name : "Choose Product"}
         </Text>
+        <Animated.Image source={require("@assets/images/dropdownArrow.png")} style={[styles.arrow, arrowAnimatedStyle]} />
       </Pressable>
 
       <Animated.View style={[styles.dropdownItemContainer, dropdownAnimatedStyle]}>
         {type === "category"
-          ? productData.map((item, index) => <ProductDropdownItem key={index.toString()} label={item.productCategory} handlePress={() => handlePressCategory(item)} />)
-          : category && category.products.map((item, index) => <ProductDropdownItem key={index.toString()} label={item.name} handlePress={() => handlePressProduct(item)} />)}
+          ? productData.map((item, index) => <ProductDropdownItem key={index.toString()} label={item.productCategory} handlePress={() => handlePressCategory(item)} choosen={item === category} />)
+          : category &&
+            category.products.map((item, index) => <ProductDropdownItem key={index.toString()} label={item.name} handlePress={() => handlePressProduct(item)} choosen={item === product} />)}
       </Animated.View>
     </View>
   );
@@ -85,10 +95,15 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: colors.White,
     top: "130%",
-    overflow: "hidden",
+    overflow: "scroll",
   },
   label: {
     fontFamily: fonts.PopRegular,
     fontSize: 16,
+    flex: 1,
+  },
+  arrow: {
+    width: 15,
+    height: 15,
   },
 });

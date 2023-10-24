@@ -3,9 +3,9 @@ import React from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 
-const ProductDropdownItem = ({ label, handlePress }) => {
+const ProductDropdownItem = ({ label, handlePress, choosen }) => {
   return (
-    <Pressable style={styles.itemBtn} onPress={handlePress}>
+    <Pressable style={[styles.itemBtn, { backgroundColor: choosen && colors.Hightlight }]} onPress={handlePress}>
       <Text style={styles.label}>{label}</Text>
     </Pressable>
   );
