@@ -5,4 +5,9 @@ const navState = atom({
   default: null,
 });
 
-export { navState };
+const showDrawerState = atom({
+  key: "showDrawerState",
+  default: false,
+});
+
+export { navState, showDrawerState };

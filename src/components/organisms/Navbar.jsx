@@ -1,14 +1,10 @@
 import { Dimensions, Image, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import NavbarButtonSection from "@components/molecules/NavbarButtonSection";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
 import Hamburger from "@components/atoms/Hamburger";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { pageState, scrollState } from "@store/scrollState";
 import CustomDrawer from "@components/templates/CustomDrawer";
@@ -20,8 +16,6 @@ const Navbar = ({ scrollRef }) => {
   const [scroll, setScroll] = useRecoilState(scrollState);
   const page = useRecoilValue(pageState);
   const nav = useRecoilValue(navState);
-
-  const [showDrawer, setShowDrawer] = useState(false);
 
   const { isTabletOrMobileDevice } = useResponsive();
 
@@ -49,37 +43,12 @@ const Navbar = ({ scrollRef }) => {
   }, [scroll]);
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
-        page === "Home" ? opacityAnimatedStyle : { opacity: 1 },
-      ]}
-    >
+    <Animated.View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb, page === "Home" ? opacityAnimatedStyle : { opacity: 1 }]}>
       <TouchableOpacity onPress={handleBackHome}>
-        <Image
-          source={
-            isTabletOrMobileDevice
-              ? require("@assets/images/logoMobile.png")
-              : require("@assets/images/logo.png")
-          }
-          style={isTabletOrMobileDevice ? styles.imageMobile : styles.imageWeb}
-        />
+        <Image source={isTabletOrMobileDevice ? require("@assets/images/logoMobile.png") : require("@assets/images/logo.png")} style={isTabletOrMobileDevice ? styles.imageMobile : styles.imageWeb} />
       </TouchableOpacity>
 
-      {isTabletOrMobileDevice ? (
-        <Hamburger blue setShowDrawer={setShowDrawer} />
-      ) : (
-        <NavbarButtonSection withBackground scrollRef={scrollRef} />
-      )}
-
-      {isTabletOrMobileDevice && (
-        <CustomDrawer
-          showModal={showDrawer}
-          setShowModal={setShowDrawer}
-          scrollRef={scrollRef}
-        />
-      )}
+      {isTabletOrMobileDevice ? <Hamburger blue /> : <NavbarButtonSection withBackground scrollRef={scrollRef} />}
     </Animated.View>
   );
 };
