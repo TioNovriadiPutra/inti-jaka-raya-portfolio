@@ -1,14 +1,15 @@
 import { Dimensions, Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { openDrop1State, openDrop2State, productState, showProductModalState } from "@store/productState";
 import { colors } from "@themes/colors";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import ProductTitle from "@components/atoms/ProductTitle";
 import ProductCategoryDropdown from "@components/atoms/ProductCategoryDropdown";
-import ProductList from "@components/organisms/ProductList";
 import useResponsive from "@hooks/useResponsive";
-import { fonts } from "@themes/fonts";
+import LoadingScreen from "./LoadingScreen";
+
+const ProductList = lazy(() => import("@components/organisms/ProductList"));
 
 const HEIGHT = Dimensions.get("window").height;
 
@@ -71,7 +72,11 @@ const ProductModal = () => {
               <ProductCategoryDropdown zIndex={998} type="product" open={openProduct} setOpen={setOpenProduct} handlePress={handleProductPress} />
             </View>
 
-            {product && <ProductList />}
+            {product && (
+              <Suspense fallback={<LoadingScreen />}>
+                <ProductList />
+              </Suspense>
+            )}
           </ScrollView>
         </Animated.View>
       </View>
