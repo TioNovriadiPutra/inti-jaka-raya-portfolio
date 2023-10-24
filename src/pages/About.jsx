@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, lazy, useEffect, useRef } from "react";
 import MainContainer from "@containers/MainContainer";
-import AboutHeader from "@components/organisms/AboutHeader";
 import { useSetRecoilState } from "recoil";
 import { pageState } from "@store/scrollState";
 import { useIsFocused } from "@react-navigation/native";
 import AboutContent from "@components/organisms/AboutContent";
 import Contact from "@components/organisms/Contact";
 import { navState } from "@store/navState";
+import LoadingScreen from "@components/templates/LoadingScreen";
+
+const AboutHeader = lazy(() => import("@components/organisms/AboutHeader"));
 
 const About = ({ navigation }) => {
   const setPage = useSetRecoilState(pageState);
@@ -25,7 +27,9 @@ const About = ({ navigation }) => {
 
   return (
     <MainContainer scrollRef={scrollRef}>
-      <AboutHeader />
+      <Suspense fallback={<LoadingScreen />}>
+        <AboutHeader />
+      </Suspense>
       <AboutContent />
       <Contact />
     </MainContainer>
