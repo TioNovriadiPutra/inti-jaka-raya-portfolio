@@ -3,18 +3,15 @@ import React from "react";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
 import HomeProductCard from "@components/molecules/HomeProductCard";
+import ProductModal from "@components/templates/ProductModal";
 
 const HomeProduct = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View
-      style={[
-        styles.container,
-        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
-      ]}
-    >
+    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
       <HomeProductCard isMobile={isTabletOrMobileDevice} />
+      <ProductModal />
     </View>
   );
 };
