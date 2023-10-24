@@ -17,4 +17,5 @@ export const colors = {
   Orange: "#FF9838",
   Modal: "rgba(0, 0, 0, 0.5)",
   DrawerBorder: "#E7E7E7",
+  Hightlight: "#E3E3E3",
 };

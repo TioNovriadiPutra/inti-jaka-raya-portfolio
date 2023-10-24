@@ -1,11 +1,13 @@
 import { Dimensions, Image, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { openDrop1State, openDrop2State, showProductModalState } from "@store/productState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { openDrop1State, openDrop2State, productState, showProductModalState } from "@store/productState";
 import { colors } from "@themes/colors";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import ProductTitle from "@components/atoms/ProductTitle";
 import ProductCategoryDropdown from "@components/atoms/ProductCategoryDropdown";
+import ProductList from "@components/organisms/ProductList";
+import useResponsive from "@hooks/useResponsive";
 
 const HEIGHT = Dimensions.get("window").height;
 
@@ -13,6 +15,9 @@ const ProductModal = () => {
   const [showProductModal, setShowProductModal] = useRecoilState(showProductModalState);
   const [openCategory, setOpenCategory] = useRecoilState(openDrop1State);
   const [openProduct, setOpenProduct] = useRecoilState(openDrop2State);
+  const product = useRecoilValue(productState);
+
+  const { isTabletOrMobileDevice } = useResponsive();
 
   const containerAnim = useSharedValue(0);
 
@@ -53,15 +58,19 @@ const ProductModal = () => {
     <Modal visible={showProductModal} transparent animationType="fade">
       <View style={styles.backdrop}>
         <Animated.View style={[styles.container, containerAnimatedStyle]}>
-          <Pressable style={styles.xButton} onPress={handleClose}>
-            <Image source={require("@assets/images/xProduct.png")} style={styles.xButtonImg} />
+          <Pressable style={[styles.xButton, isTabletOrMobileDevice ? styles.xButtonMobile : styles.xButtonWeb]} onPress={handleClose}>
+            <Image source={require("@assets/images/xProduct.png")} style={isTabletOrMobileDevice ? styles.xButtonImgMobile : styles.xButtonImgWeb} />
           </Pressable>
-          <ScrollView style={styles.scrollContainer}>
+
+          <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
             <ProductTitle />
-            <View style={styles.dropdownContainer}>
-              <ProductCategoryDropdown zIndex={2} type="category" open={openCategory} setOpen={setOpenCategory} handlePress={handleCategoryPress} />
-              <ProductCategoryDropdown zIndex={1} type="product" open={openProduct} setOpen={setOpenProduct} handlePress={handleProductPress} />
+
+            <View style={[styles.dropdownContainer, isTabletOrMobileDevice ? styles.dropdownContainerMobile : styles.dropdownContainerWeb]}>
+              <ProductCategoryDropdown zIndex={999} type="category" open={openCategory} setOpen={setOpenCategory} handlePress={handleCategoryPress} />
+              <ProductCategoryDropdown zIndex={998} type="product" open={openProduct} setOpen={setOpenProduct} handlePress={handleProductPress} />
             </View>
+
+            {product && <ProductList />}
           </ScrollView>
         </Animated.View>
       </View>
@@ -86,19 +95,37 @@ const styles = StyleSheet.create({
     paddingVertical: 67,
   },
   dropdownContainer: {
-    width: 514,
-    alignSelf: "center",
+    zIndex: 999,
+  },
+  dropdownContainerWeb: {
     marginTop: 50,
     gap: 30,
+    width: 514,
+    alignSelf: "center",
+  },
+  dropdownContainerMobile: {
+    marginTop: 32,
+    marginHorizontal: 20,
+    gap: 20,
   },
   xButton: {
     position: "absolute",
-    top: 30,
-    right: 64,
     zIndex: 999,
   },
-  xButtonImg: {
+  xButtonWeb: {
+    top: 30,
+    right: 64,
+  },
+  xButtonMobile: {
+    top: 21,
+    right: 20,
+  },
+  xButtonImgWeb: {
     width: 48,
     height: 48,
+  },
+  xButtonImgMobile: {
+    width: 32,
+    height: 32,
   },
 });
