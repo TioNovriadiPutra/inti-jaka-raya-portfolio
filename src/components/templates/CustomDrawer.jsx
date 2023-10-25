@@ -30,7 +30,6 @@ const CustomDrawer = ({ scrollRef }) => {
   };
 
   const handleChangePage = (dest) => {
-    handleClose();
     setScroll(0);
     nav.navigate(dest);
   };
@@ -43,6 +42,16 @@ const CustomDrawer = ({ scrollRef }) => {
   const handleScrollToProduct = () => {
     handleClose();
     scrollRef.current.scrollTo({ x: 0, y: productPosition - 80 });
+  };
+
+  const handlePress = (dest) => {
+    handleClose();
+
+    if (page === dest) {
+      scrollRef.current.scrollTo({ animated: true, x: 0, y: 0 });
+    } else {
+      handleChangePage(dest);
+    }
   };
 
   useEffect(() => {
@@ -58,11 +67,10 @@ const CustomDrawer = ({ scrollRef }) => {
     <Modal transparent visible={showDrawer} animationType="fade" style={styles.modal}>
       <TouchableOpacity style={styles.container} activeOpacity={1} onPress={handleClose}>
         <Animated.View style={[styles.btnContainer, heightAnimatedStyle]}>
-          <DrawerButton label="Home" onPress={() => handleChangePage("Home")} />
-          <DrawerButton label="About" onPress={() => handleChangePage("About")} />
+          <DrawerButton label="Home" onPress={() => handlePress("Home")} />
+          <DrawerButton label="About" onPress={() => handlePress("About")} />
           {page === "Home" && <DrawerButton label="Product" onPress={handleScrollToProduct} />}
-
-          {dataNewsLetter[0].image && <DrawerButton label="Newsletter" onPress={() => handleChangePage("Newsletter")} />}
+          {dataNewsLetter[0].image && <DrawerButton label="Newsletter" onPress={() => handlePress("Newsletter")} />}
           <DrawerButton label="Contact" onPress={handleScrollEnd} />
         </Animated.View>
       </TouchableOpacity>
