@@ -5,8 +5,8 @@ import { colors } from "@themes/colors";
 import { useForm } from "react-hook-form";
 import CustomTextInput from "@components/atoms/CustomTextInput";
 import ButtonSubmit from "@components/atoms/ButtonSubmit";
-import Mailer from "react-native-mail";
 import useResponsive from "@hooks/useResponsive";
+import email from "react-native-email";
 
 const InqueriesForm = () => {
   const { control, handleSubmit } = useForm();
@@ -14,27 +14,15 @@ const InqueriesForm = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   const handleSendEmail = (data) => {
-    Mailer.mail(
-      {
-        subject: data.subject,
-        recipients: "tionvriadi@gmail.com",
-        body: data.name + " : " + data.message,
-        isHTML: true,
-      },
-      (error, event) => {
-        if (error) {
-          console.error("Error sending email:", error);
-        } else {
-          console.log("Email sent successfully!");
-        }
-      }
-    );
+    email("tionvriadi@gmail.com", {
+      subject: data.name + " - " + data.subject,
+      body: data.message,
+      checkCanOpen: false,
+    }).catch((error) => console.log(error));
   };
 
   return (
-    <View
-      style={[styles.container, !isTabletOrMobileDevice && styles.containerWeb]}
-    >
+    <View style={[styles.container, !isTabletOrMobileDevice && styles.containerWeb]}>
       {isTabletOrMobileDevice ? (
         <View>
           <Text style={styles.title}>Inquiries</Text>
@@ -43,38 +31,15 @@ const InqueriesForm = () => {
       ) : (
         <Text style={styles.title}>
           Inquiries
-          <Text style={[styles.subTitle, styles.subTitleWeb]}>
-            For Any Further Information
-          </Text>
+          <Text style={[styles.subTitle, styles.subTitleWeb]}>For Any Further Information</Text>
         </Text>
       )}
 
       <View style={styles.form}>
-        <CustomTextInput
-          name="name"
-          defaultValue={null}
-          control={control}
-          placeholder="Name"
-        />
-        <CustomTextInput
-          name="email"
-          defaultValue={null}
-          control={control}
-          placeholder="Email"
-        />
-        <CustomTextInput
-          name="subject"
-          defaultValue={null}
-          control={control}
-          placeholder="Subject"
-        />
-        <CustomTextInput
-          name="message"
-          defaultValue={null}
-          control={control}
-          placeholder="Message"
-          textArea
-        />
+        <CustomTextInput name="name" defaultValue={null} control={control} placeholder="Name" />
+        <CustomTextInput name="email" defaultValue={null} control={control} placeholder="Email" />
+        <CustomTextInput name="subject" defaultValue={null} control={control} placeholder="Subject" />
+        <CustomTextInput name="message" defaultValue={null} control={control} placeholder="Message" textArea />
       </View>
 
       <ButtonSubmit onPress={handleSubmit(handleSendEmail)} />
