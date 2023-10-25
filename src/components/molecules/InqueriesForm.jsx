@@ -14,7 +14,7 @@ const InqueriesForm = () => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   const handleSendEmail = (data) => {
-    email("tionvriadi@gmail.com", {
+    email("sales_ijr@intijakaraya.com", {
       subject: data.name + " - " + data.subject,
       body: data.message,
       checkCanOpen: false,
