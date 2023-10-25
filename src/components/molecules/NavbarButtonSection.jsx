@@ -18,6 +18,14 @@ const NavbarButtonSection = ({ white, withBorder, withBackground, scrollRef }) =
     nav.navigate(dest);
   };
 
+  const handlePress = (dest) => {
+    if (page === dest) {
+      scrollRef.current.scrollTo({ animated: true, x: 0, y: 0 });
+    } else {
+      handleChangePage(dest);
+    }
+  };
+
   const handleScrollEnd = () => {
     scrollRef.current.scrollToEnd({ animation: true });
   };
@@ -28,10 +36,10 @@ const NavbarButtonSection = ({ white, withBorder, withBackground, scrollRef }) =
 
   return (
     <View style={styles.btnContainer}>
-      <NavbarButton label="Home" white={white} onPress={() => handleChangePage("Home")} />
-      <NavbarButton label="About" white={white} onPress={() => handleChangePage("About")} />
+      <NavbarButton label="Home" white={white} onPress={() => handlePress("Home")} />
+      <NavbarButton label="About" white={white} onPress={() => handlePress("About")} />
       {page === "Home" && <NavbarButton label="Product" white={white} onPress={handleScrollToProduct} />}
-      {dataNewsLetter[0].image && <NavbarButton label="Newsletter" white={white} onPress={() => handleChangePage("Newsletter")} />}
+      {dataNewsLetter[0].image && <NavbarButton label="Newsletter" white={white} onPress={() => handlePress("Newsletter")} />}
       <NavbarButton label="Contact" white withBorder={withBorder} withBackground={withBackground} onPress={handleScrollEnd} />
     </View>
   );
