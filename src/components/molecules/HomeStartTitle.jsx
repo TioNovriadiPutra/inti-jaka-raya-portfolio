@@ -2,18 +2,15 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
+import { useTranslation } from "react-i18next";
 
 const HomeStartTitle = ({ mobile }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={mobile ? styles.containerMobile : styles.container}>
-      <Text style={[styles.title, !mobile ? styles.titleWeb : null]}>
-        WELCOME TO PT INTI JAKARAYA
-      </Text>
-      <Text style={[styles.subTitle, !mobile ? styles.titleWeb : null]}>
-        PT INTI JAKARAYA was established in 2017 located in Bandung West Java –
-        Indonesia. PT INTI JAKARAYA is a Sole Distributor for UNIQUE POLYMER
-        SYSTEMS Made in UK, in Indonesia.
-      </Text>
+      <Text style={[styles.title, !mobile ? styles.titleWeb : null]}>{t("welcome")}</Text>
+      <Text style={[styles.subTitle, !mobile ? styles.titleWeb : null]}>{t("welcomeDesc")}</Text>
     </View>
   );
 };
