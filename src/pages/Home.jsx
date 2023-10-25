@@ -12,6 +12,7 @@ import HomeGallery from "@components/organisms/HomeGallery";
 import { pageState } from "@store/scrollState";
 import Contact from "@components/organisms/Contact";
 import { useIsFocused } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 const HEIGHT = Dimensions.get("window").height;
 
@@ -20,6 +21,7 @@ const Home = ({ navigation }) => {
   const setPage = useSetRecoilState(pageState);
 
   const isFocused = useIsFocused();
+  const { t } = useTranslation();
 
   const scrollRef = useRef(null);
 
@@ -37,18 +39,18 @@ const Home = ({ navigation }) => {
       <HomeDesc
         color={colors.Blue}
         image={require("@assets/images/desc1.png")}
-        type="Rebuild"
-        title="We Rebuild"
-        desc="Coatings play a critical role in industrial repair processes. They are used to restore or enhance the performance and longevity of various industrial components and structures. Here are some ways coatings are applied in industrial repair"
+        type={t("homeDescHighlight1")}
+        title={t("homeDescTitle1")}
+        desc={t("homeDesc1")}
         animatedPoinEnter={HEIGHT + 520}
         animatedPoinExit={HEIGHT - 450}
       />
       <HomeDesc
         color={colors.Orange}
         image={require("@assets/images/desc2.png")}
-        type="Protect"
-        title="We Protect"
-        desc="Provide a shield against a multitude of potential threats, including corrosion from moisture and chemicals, abrasion and wear from mechanical forces, and damage from UV radiation and weathering"
+        type={t("homeDescHighlight2")}
+        title={t("homeDescTitle2")}
+        desc={t("homeDesc2")}
         position="right"
         animatedPoinEnter={HEIGHT + 520 + 300}
         animatedPoinExit={HEIGHT - 450}
