@@ -8,6 +8,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-na
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { scrollState } from "@store/scrollState";
 import { showProductModalState } from "@store/productState";
+import { useTranslation } from "react-i18next";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -16,12 +17,13 @@ const HEIGHT = Dimensions.get("window").height;
 
 const HomeProductCard = ({ isMobile }) => {
   const scroll = useRecoilValue(scrollState);
+  const setShowProductModal = useSetRecoilState(showProductModalState);
+
+  const { t } = useTranslation();
 
   const opacityAnim = useSharedValue(0);
   const translateYAnim = useSharedValue(50);
   const hoverAnim = useSharedValue(1);
-
-  const setShowProductModal = useSetRecoilState(showProductModalState);
 
   const scaleAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -77,12 +79,9 @@ const HomeProductCard = ({ isMobile }) => {
     >
       <ImageBackground source={require("@assets/images/product.png")} style={styles.backgroundImage} imageStyle={styles.container}>
         <LinearGradient colors={[colors.Black, "transparent"]} start={[0, 1]} end={[0, -1]} style={[styles.backdrop, isMobile ? styles.backdropMobile : styles.backdropWeb]}>
-          <DescType color={colors.WhiteBlur} title="Our Product" />
+          <DescType color={colors.WhiteBlur} title={t("productTitle")} />
           <Text style={styles.title}>Unique Polymer Systems (UPS)</Text>
-          <Text style={[styles.desc, isMobile ? styles.descMobile : styles.descWeb]}>
-            UPS are able to offer unique solutions such as fluid flow equipment linings to corrosion protection for offshore platforms. Our unique solutions can be applied throughout all industrial
-            sectors; Oil & Gas, Marine (ThistleBond), Power Generation, Paper & Pulp, Chemical & Corrosion, Water & Wastewater, Petrochemical & General Industry.
-          </Text>
+          <Text style={[styles.desc, isMobile ? styles.descMobile : styles.descWeb]}>{t("productDesc")}</Text>
         </LinearGradient>
       </ImageBackground>
     </AnimatedPressable>

@@ -2,20 +2,15 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
+import { useTranslation } from "react-i18next";
 
 const HomeGalleryTitle = ({ isMobile }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
-      <Text
-        style={[styles.title, isMobile ? styles.titleMobile : styles.titleWeb]}
-      >
-        Project Gallery
-      </Text>
-      <Text
-        style={[styles.desc, isMobile ? styles.descMobile : styles.descWeb]}
-      >
-        what we have done to our projects
-      </Text>
+      <Text style={[styles.title, isMobile ? styles.titleMobile : styles.titleWeb]}>{t("galleryTitle")}</Text>
+      <Text style={[styles.desc, isMobile ? styles.descMobile : styles.descWeb]}>{t("gallerySubTitle")}</Text>
     </View>
   );
 };

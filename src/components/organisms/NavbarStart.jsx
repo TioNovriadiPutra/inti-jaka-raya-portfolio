@@ -1,6 +1,7 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import NavbarButtonSection from "@components/molecules/NavbarButtonSection";
+import LanguangeChange from "@components/molecules/LanguangeChange";
 
 const NavbarStart = ({ mobile, scrollRef }) => {
   const handleBackHome = () => {
@@ -10,9 +11,13 @@ const NavbarStart = ({ mobile, scrollRef }) => {
 
   return (
     <View style={[styles.container, mobile === true ? styles.containerMobile : styles.containerWeb]}>
-      <TouchableOpacity onPress={handleBackHome}>
-        <Image source={mobile ? require("@assets/images/logoWhiteMobile.png") : require("@assets/images/logoWhite.png")} style={mobile ? styles.logoMobile : styles.logo} />
-      </TouchableOpacity>
+      <View style={styles.leftSection}>
+        <TouchableOpacity onPress={handleBackHome}>
+          <Image source={mobile ? require("@assets/images/logoWhiteMobile.png") : require("@assets/images/logoWhite.png")} style={mobile ? styles.logoMobile : styles.logo} />
+        </TouchableOpacity>
+
+        <LanguangeChange start />
+      </View>
 
       {!mobile && <NavbarButtonSection white withBorder scrollRef={scrollRef} />}
     </View>
@@ -46,5 +51,10 @@ const styles = StyleSheet.create({
   logoMobile: {
     width: 156,
     height: 32,
+  },
+  leftSection: {
+    gap: 44,
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

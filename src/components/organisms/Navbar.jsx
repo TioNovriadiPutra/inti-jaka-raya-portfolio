@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useEffect } from "react";
 import NavbarButtonSection from "@components/molecules/NavbarButtonSection";
 import { colors } from "@themes/colors";
@@ -9,6 +9,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { pageState, scrollState } from "@store/scrollState";
 import CustomDrawer from "@components/templates/CustomDrawer";
 import { navState } from "@store/navState";
+import LanguangeChange from "@components/molecules/LanguangeChange";
 
 const HEIGHT = Dimensions.get("window").height;
 
@@ -44,9 +45,16 @@ const Navbar = ({ scrollRef }) => {
 
   return (
     <Animated.View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb, page === "Home" ? opacityAnimatedStyle : { opacity: 1 }]}>
-      <TouchableOpacity onPress={handleBackHome}>
-        <Image source={isTabletOrMobileDevice ? require("@assets/images/logoMobile.png") : require("@assets/images/logo.png")} style={isTabletOrMobileDevice ? styles.imageMobile : styles.imageWeb} />
-      </TouchableOpacity>
+      <View style={styles.leftSection}>
+        <TouchableOpacity onPress={handleBackHome} style={styles.logoBtn}>
+          <Image
+            source={isTabletOrMobileDevice ? require("@assets/images/logoMobile.png") : require("@assets/images/logo.png")}
+            style={isTabletOrMobileDevice ? styles.imageMobile : styles.imageWeb}
+          />
+        </TouchableOpacity>
+
+        <LanguangeChange />
+      </View>
 
       {isTabletOrMobileDevice ? <Hamburger blue /> : <NavbarButtonSection withBackground scrollRef={scrollRef} />}
     </Animated.View>
@@ -90,5 +98,15 @@ const styles = StyleSheet.create({
   imageMobile: {
     width: 156,
     height: 32,
+  },
+  leftSection: {
+    gap: 44,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  logoBtn: {
+    marginRight: 22,
+    borderRightWidth: 1,
+    borderRightColor: colors.BorderLogo,
   },
 });

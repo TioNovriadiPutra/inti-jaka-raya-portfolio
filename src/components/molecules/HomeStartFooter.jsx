@@ -2,18 +2,14 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
+import { useTranslation } from "react-i18next";
 
 const HomeStartFooter = ({ mobile }) => {
+  const { t } = useTranslation();
+
   return (
-    <View
-      style={[
-        styles.textBox,
-        mobile ? styles.textBoxMobile : styles.textBoxWeb,
-      ]}
-    >
-      <Text style={styles.text}>
-        Getting Bigger, Faster, & Stronger Than Ever
-      </Text>
+    <View style={[styles.textBox, mobile ? styles.textBoxMobile : styles.textBoxWeb]}>
+      <Text style={styles.text}>{t("welcomeTagline")}</Text>
     </View>
   );
 };
