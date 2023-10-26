@@ -9,15 +9,16 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { scrollState } from "@store/scrollState";
 import { showProductModalState } from "@store/productState";
 import { useTranslation } from "react-i18next";
+import { productLayoutState } from "@store/sectionState";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const WIDTH = Dimensions.get("window").width;
-const HEIGHT = Dimensions.get("window").height;
 
 const HomeProductCard = ({ isMobile }) => {
   const scroll = useRecoilValue(scrollState);
   const setShowProductModal = useSetRecoilState(showProductModalState);
+  const productLayout = useRecoilValue(productLayoutState);
 
   const { t } = useTranslation();
 
@@ -60,21 +61,19 @@ const HomeProductCard = ({ isMobile }) => {
     translateYAnim.value = withTiming(50, { duration: 300 });
   };
 
-  if (!isMobile) {
-    useEffect(() => {
-      if (scroll >= HEIGHT + 720 + 1048 - 150) {
-        handleEnter();
-      } else if (scroll <= HEIGHT + 800) {
-        handleExit();
-      }
-    }, [scroll]);
-  }
+  useEffect(() => {
+    if (scroll >= productLayout - 200) {
+      handleEnter();
+    } else if (scroll <= productLayout - 400) {
+      handleExit();
+    }
+  }, [scroll]);
 
   return (
     <AnimatedPressable
       onHoverIn={handleHoverIn}
       onHoverOut={handleHoverOut}
-      style={[styles.container, isMobile ? styles.containerMobile : styles.containerWeb, !isMobile && scaleAnimatedStyle, !isMobile && hoverAnimatedStyle]}
+      style={[styles.container, isMobile ? styles.containerMobile : styles.containerWeb, scaleAnimatedStyle, !isMobile && hoverAnimatedStyle]}
       onPress={handlePress}
     >
       <ImageBackground source={require("@assets/images/product.png")} style={styles.backgroundImage} imageStyle={styles.container}>

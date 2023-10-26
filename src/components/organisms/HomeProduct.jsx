@@ -5,21 +5,16 @@ import useResponsive from "@hooks/useResponsive";
 import HomeProductCard from "@components/molecules/HomeProductCard";
 import ProductModal from "@components/templates/ProductModal";
 import { useSetRecoilState } from "recoil";
-import { productPositionState } from "@store/productState";
+import { productLayoutState } from "@store/sectionState";
+import { setSectionLayout } from "@utils/helper/setSectionLayout";
 
 const HomeProduct = () => {
-  const setProductPosition = useSetRecoilState(productPositionState);
+  const setProductLayout = useSetRecoilState(productLayoutState);
 
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View
-      style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}
-      onLayout={(event) => {
-        const layout = event.nativeEvent.layout;
-        setProductPosition(layout.y);
-      }}
-    >
+    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]} onLayout={(event) => setSectionLayout(event, setProductLayout)}>
       <HomeProductCard isMobile={isTabletOrMobileDevice} />
       <ProductModal />
     </View>

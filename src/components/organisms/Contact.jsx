@@ -8,29 +8,17 @@ import SocialMedia from "@components/molecules/SocialMedia";
 import ContactBottomNavbar from "@components/molecules/ContactBottomNavbar";
 import ContactFooter from "./ContactFooter";
 
-const Contact = () => {
+const Contact = ({ scrollRef }) => {
   const { isTabletOrMobileDevice } = useResponsive();
 
   return (
-    <View
-      style={[
-        styles.container,
-        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb,
-      ]}
-    >
-      <View
-        style={[
-          styles.inputContainer,
-          isTabletOrMobileDevice
-            ? styles.inputContainerMobile
-            : styles.inputContainerWeb,
-        ]}
-      >
+    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
+      <View style={[styles.inputContainer, isTabletOrMobileDevice ? styles.inputContainerMobile : styles.inputContainerWeb]}>
         <CompanyInfo />
         <InqueriesForm />
         {isTabletOrMobileDevice && <SocialMedia />}
       </View>
-      {!isTabletOrMobileDevice && <ContactBottomNavbar />}
+      {!isTabletOrMobileDevice && <ContactBottomNavbar scrollRef={scrollRef} />}
       <ContactFooter />
     </View>
   );

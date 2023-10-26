@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
@@ -6,11 +6,12 @@ import useResponsive from "@hooks/useResponsive";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-
-const HEIGHT = Dimensions.get("window").height;
+import { aboutDescLayoutState, aboutMissionLayoutState } from "@store/sectionState";
 
 const WhatWeDo = ({ color, question, title, func }) => {
   const scroll = useRecoilValue(scrollState);
+  const aboutMissionLayout = useRecoilValue(aboutMissionLayoutState);
+  const aboutDescLayout = useRecoilValue(aboutDescLayoutState);
 
   const { isTabletOrMobileDevice } = useResponsive();
 
@@ -29,18 +30,18 @@ const WhatWeDo = ({ color, question, title, func }) => {
 
   useEffect(() => {
     if (func === "whatWeDo") {
-      if (isTabletOrMobileDevice ? scroll >= HEIGHT - 300 : scroll >= HEIGHT) {
+      if (scroll >= aboutDescLayout + 200) {
         opacityAnim.value = withTiming(1, { duration: 1000 });
         translateXAnim.value = withTiming(0, { duration: 1000 });
-      } else if (scroll === 0) {
+      } else if (scroll <= aboutDescLayout) {
         opacityAnim.value = withTiming(0, { duration: 1000 });
         translateXAnim.value = withTiming(-50, { duration: 1000 });
       }
     } else {
-      if (isTabletOrMobileDevice ? scroll >= HEIGHT + 200 : scroll >= HEIGHT + 500) {
+      if (scroll >= aboutMissionLayout + 200) {
         opacityAnim.value = withTiming(1, { duration: 1000 });
         translateXAnim.value = withTiming(0, { duration: 1000 });
-      } else if (isTabletOrMobileDevice ? scroll <= HEIGHT - 300 : scroll <= HEIGHT) {
+      } else if (scroll <= aboutMissionLayout) {
         opacityAnim.value = withTiming(0, { duration: 1000 });
         translateXAnim.value = withTiming(-50, { duration: 1000 });
       }

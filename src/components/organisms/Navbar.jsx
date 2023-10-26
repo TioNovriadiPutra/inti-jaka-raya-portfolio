@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBtn: {
-    marginRight: 22,
+    paddingRight: 22,
     borderRightWidth: 1,
     borderRightColor: colors.BorderLogo,
   },

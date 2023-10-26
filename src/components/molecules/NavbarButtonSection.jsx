@@ -5,14 +5,14 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { navState } from "@store/navState";
 import { pageState, scrollState } from "@store/scrollState";
 import { dataNewsLetter } from "@utils/constant/newsletterData";
-import { productPositionState } from "@store/productState";
 import { useTranslation } from "react-i18next";
+import { productLayoutState } from "@store/sectionState";
 
 const NavbarButtonSection = ({ white, withBorder, withBackground, scrollRef }) => {
   const nav = useRecoilValue(navState);
   const page = useRecoilValue(pageState);
   const setScroll = useSetRecoilState(scrollState);
-  const productPosition = useRecoilValue(productPositionState);
+  const productLayout = useRecoilValue(productLayoutState);
 
   const { t } = useTranslation();
 
@@ -34,7 +34,7 @@ const NavbarButtonSection = ({ white, withBorder, withBackground, scrollRef }) =
   };
 
   const handleScrollToProduct = () => {
-    scrollRef.current.scrollTo({ x: 0, y: productPosition - 80 });
+    scrollRef.current.scrollTo({ x: 0, y: productLayout - 80 });
   };
 
   return (
