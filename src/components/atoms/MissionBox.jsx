@@ -1,18 +1,15 @@
-import { Dimensions, Image, StyleSheet, Text } from "react-native";
+import { Image, StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { colors } from "@themes/colors";
 import { fonts } from "@themes/fonts";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
-import useResponsive from "@hooks/useResponsive";
-
-const HEIGHT = Dimensions.get("window").height;
+import { aboutMissionLayoutState } from "@store/sectionState";
 
 const MissionBox = ({ icon, desc, title, index }) => {
   const scroll = useRecoilValue(scrollState);
-
-  const { isTabletOrMobileDevice } = useResponsive();
+  const aboutMissionLayout = useRecoilValue(aboutMissionLayoutState);
 
   const opacityAnim = useSharedValue(0);
   const translateYAnim = useSharedValue(50);
@@ -28,12 +25,12 @@ const MissionBox = ({ icon, desc, title, index }) => {
   });
 
   useEffect(() => {
-    if (isTabletOrMobileDevice ? scroll >= HEIGHT + 200 : scroll >= HEIGHT + 500) {
+    if (scroll >= aboutMissionLayout + 200) {
       setTimeout(() => {
         opacityAnim.value = withTiming(1, { duration: 800 });
         translateYAnim.value = withTiming(0, { duration: 800 });
       }, 300 * index);
-    } else if (isTabletOrMobileDevice ? scroll <= HEIGHT - 300 : scroll <= HEIGHT) {
+    } else if (scroll <= aboutMissionLayout) {
       opacityAnim.value = withTiming(0, { duration: 300 });
       translateYAnim.value = withTiming(50, { duration: 300 });
     }

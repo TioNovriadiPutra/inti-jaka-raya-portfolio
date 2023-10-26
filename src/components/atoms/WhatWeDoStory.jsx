@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
@@ -6,13 +6,15 @@ import useResponsive from "@hooks/useResponsive";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useRecoilValue } from "recoil";
 import { scrollState } from "@store/scrollState";
-
-const HEIGHT = Dimensions.get("window").height;
+import { useTranslation } from "react-i18next";
+import { aboutDescLayoutState } from "@store/sectionState";
 
 const WhatWeDoStory = () => {
   const scroll = useRecoilValue(scrollState);
+  const aboutDescLayout = useRecoilValue(aboutDescLayoutState);
 
   const { isTabletOrMobileDevice } = useResponsive();
+  const { t } = useTranslation();
 
   const opacityAnim = useSharedValue(0);
   const translateXAnim = useSharedValue(50);
@@ -28,10 +30,10 @@ const WhatWeDoStory = () => {
   });
 
   useEffect(() => {
-    if (isTabletOrMobileDevice ? scroll >= HEIGHT - 300 : scroll >= HEIGHT) {
+    if (scroll >= aboutDescLayout + 200) {
       opacityAnim.value = withTiming(1, { duration: 1000 });
       translateXAnim.value = withTiming(0, { duration: 1000 });
-    } else if (scroll === 0) {
+    } else if (scroll <= aboutDescLayout) {
       opacityAnim.value = withTiming(0, { duration: 1000 });
       translateXAnim.value = withTiming(50, { duration: 1000 });
     }
@@ -39,9 +41,7 @@ const WhatWeDoStory = () => {
 
   return (
     <Animated.View style={[!isTabletOrMobileDevice && styles.container, whatWeDoStoryAnimatedStyle]}>
-      <Text style={styles.story}>
-        {`PT INTI JAKARAYA was established in 2017 located in Bandung West Java – Indonesia. PT INTI JAKARAYA is a Sole Distributor for UNIQUE POLYMER SYSTEMS Made in UK, in Indonesia.\n\nPT INTI JAKARAYA provides innovative business solution to our customers that have fluid flow system problems, such as : erosion, corrosion, cavitation, dry abrasive, chemical attack concrete problem, floor protection and etc.`}
-      </Text>
+      <Text style={styles.story}>{t("whatWeDoDesc")}</Text>
     </Animated.View>
   );
 };

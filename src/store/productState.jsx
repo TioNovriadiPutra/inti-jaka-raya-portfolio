@@ -40,9 +40,4 @@ const modalImageState = atom({
   default: null,
 });
 
-const productPositionState = atom({
-  key: "productPositionState",
-  default: null,
-});
-
-export { showProductModalState, openDrop1State, openDrop2State, categoryState, productState, listIndexState, showMobileModalImageState, modalImageState, productPositionState };
+export { showProductModalState, openDrop1State, openDrop2State, categoryState, productState, listIndexState, showMobileModalImageState, modalImageState };
