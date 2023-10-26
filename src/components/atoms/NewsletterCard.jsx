@@ -1,4 +1,4 @@
-import { Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { colors } from "@themes/colors";
 import { fonts } from "@themes/fonts";
@@ -6,13 +6,13 @@ import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTimin
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { pageState, scrollState } from "@store/scrollState";
 import { navState } from "@store/navState";
+import { newsletterLayoutState } from "@store/sectionState";
 
-const HEIGHT = Dimensions.get("window").height;
-
-const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
+const NewsletterCard = ({ data, index, isMobile }) => {
   const scroll = useRecoilValue(scrollState);
   const nav = useRecoilValue(navState);
   const setPage = useSetRecoilState(pageState);
+  const newsletterLayout = useRecoilValue(newsletterLayoutState);
 
   const readMoreAnim = useSharedValue(0);
   const shadowAnim = useSharedValue(0);
@@ -89,18 +89,16 @@ const NewsletterCard = ({ data, index, isMobile, isNewsletter }) => {
   };
 
   useEffect(() => {
-    if (!isMobile && !isNewsletter) {
-      if (scroll >= HEIGHT - 450) {
-        handleEnter();
-      } else if (scroll === 0) {
-        handleExit();
-      }
+    if (scroll >= newsletterLayout - 200) {
+      handleEnter();
+    } else if (scroll <= newsletterLayout - 400) {
+      handleExit();
     }
   }, [scroll]);
 
   return (
     <Animated.View
-      style={[styles.cardContainer, isMobile ? styles.cardContainerMobile : styles.cardContainerWeb, animatedShadowStyle, !isMobile && !isNewsletter ? animatedOpacityStyle : null]}
+      style={[styles.cardContainer, isMobile ? styles.cardContainerMobile : styles.cardContainerWeb, animatedShadowStyle, animatedOpacityStyle]}
       onMouseEnter={onHoverInShadow}
       onMouseLeave={onHoverOutShadow}
     >

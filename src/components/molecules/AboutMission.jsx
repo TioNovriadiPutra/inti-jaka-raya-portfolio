@@ -4,21 +4,20 @@ import WhatWeDo from "@components/atoms/WhatWeDo";
 import { colors } from "@themes/colors";
 import MissionDescBox from "./MissionDescBox";
 import useResponsive from "@hooks/useResponsive";
+import { useTranslation } from "react-i18next";
+import { useSetRecoilState } from "recoil";
+import { aboutMissionLayoutState } from "@store/sectionState";
+import { setSectionLayout } from "@utils/helper/setSectionLayout";
 
 const AboutMission = () => {
+  const setAboutMissionLayout = useSetRecoilState(aboutMissionLayoutState);
+
   const { isTabletOrMobileDevice } = useResponsive();
+  const { t } = useTranslation();
 
   return (
-    <View
-      style={
-        isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb
-      }
-    >
-      <WhatWeDo
-        color={colors.Orange}
-        question="Our Mission"
-        title="We are dedicated to offering the best goods and services."
-      />
+    <View style={isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb} onLayout={(event) => setSectionLayout(event, setAboutMissionLayout)}>
+      <WhatWeDo color={colors.Orange} question={t("mission")} title={t("missionTitle")} />
       <MissionDescBox />
     </View>
   );

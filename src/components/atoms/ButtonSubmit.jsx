@@ -1,12 +1,15 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { colors } from "@themes/colors";
 import { fonts } from "@themes/fonts";
+import { useTranslation } from "react-i18next";
 
 const ButtonSubmit = ({ onPress }) => {
+  const { t } = useTranslation();
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text style={styles.label}>Submit</Text>
+      <Text style={styles.label}>{t("contactSubmit")}</Text>
     </TouchableOpacity>
   );
 };

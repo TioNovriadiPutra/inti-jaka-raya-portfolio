@@ -7,14 +7,17 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { navState, showDrawerState } from "@store/navState";
 import { pageState, scrollState } from "@store/scrollState";
 import { dataNewsLetter } from "@utils/constant/newsletterData";
-import { productPositionState } from "@store/productState";
+import { productLayoutState } from "@store/sectionState";
+import { useTranslation } from "react-i18next";
 
 const CustomDrawer = ({ scrollRef }) => {
   const nav = useRecoilValue(navState);
   const setScroll = useSetRecoilState(scrollState);
-  const productPosition = useRecoilValue(productPositionState);
   const [showDrawer, setShowDrawer] = useRecoilState(showDrawerState);
   const page = useRecoilValue(pageState);
+  const productLayout = useRecoilValue(productLayoutState);
+
+  const { t } = useTranslation();
 
   const heightAnim = useSharedValue(0);
 
@@ -41,7 +44,7 @@ const CustomDrawer = ({ scrollRef }) => {
 
   const handleScrollToProduct = () => {
     handleClose();
-    scrollRef.current.scrollTo({ x: 0, y: productPosition - 80 });
+    scrollRef.current.scrollTo({ x: 0, y: productLayout - 80 });
   };
 
   const handlePress = (dest) => {
@@ -67,11 +70,11 @@ const CustomDrawer = ({ scrollRef }) => {
     <Modal transparent visible={showDrawer} animationType="fade" style={styles.modal}>
       <TouchableOpacity style={styles.container} activeOpacity={1} onPress={handleClose}>
         <Animated.View style={[styles.btnContainer, heightAnimatedStyle]}>
-          <DrawerButton label="Home" onPress={() => handlePress("Home")} />
-          <DrawerButton label="About" onPress={() => handlePress("About")} />
-          {page === "Home" && <DrawerButton label="Product" onPress={handleScrollToProduct} />}
-          {dataNewsLetter[0].image && <DrawerButton label="Newsletter" onPress={() => handlePress("Newsletter")} />}
-          <DrawerButton label="Contact" onPress={handleScrollEnd} />
+          <DrawerButton label={t("navbarHome")} onPress={() => handlePress("Home")} />
+          <DrawerButton label={t("navbarAbout")} onPress={() => handlePress("About")} />
+          {page === "Home" && <DrawerButton label={t("navbarProduct")} onPress={handleScrollToProduct} />}
+          {dataNewsLetter[0].image && <DrawerButton label={t("navbarNewsletter")} onPress={() => handlePress("Newsletter")} />}
+          <DrawerButton label={t("navbarContact")} onPress={handleScrollEnd} />
         </Animated.View>
       </TouchableOpacity>
     </Modal>

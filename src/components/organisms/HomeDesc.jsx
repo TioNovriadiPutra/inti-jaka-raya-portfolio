@@ -4,13 +4,17 @@ import useResponsive from "@hooks/useResponsive";
 import { colors } from "@themes/colors";
 import HomeDescText from "@components/molecules/HomeDescText";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { scrollState } from "@store/scrollState";
+import { homeDescLayout1State, homeDescLayout2State } from "@store/sectionState";
+import { setSectionLayout } from "@utils/helper/setSectionLayout";
 
-const HomeDesc = ({ position = "left", color, image, type, title, desc, animatedPoinEnter, animatedPoinExit }) => {
+const HomeDesc = ({ position = "left", color, image, type, title, desc, animatedPoinEnter }) => {
   const opacityAnim = useSharedValue(0);
   const translateXLeftAnim = useSharedValue(-50);
   const translateXRightAnim = useSharedValue(50);
+  const [homeDescLayout1, setHomeDescLayout1] = useRecoilState(homeDescLayout1State);
+  const setHomeDescLayout2 = useSetRecoilState(homeDescLayout2State);
 
   const scroll = useRecoilValue(scrollState);
 
@@ -48,21 +52,20 @@ const HomeDesc = ({ position = "left", color, image, type, title, desc, animated
     }
   };
 
-  if (!isTabletOrMobileDevice) {
-    useEffect(() => {
-      if (scroll >= animatedPoinEnter) {
-        handleEnter();
-      } else if (scroll <= animatedPoinExit) {
-        handleExit();
-      }
-    }, [scroll]);
-  }
+  useEffect(() => {
+    if (scroll >= animatedPoinEnter) {
+      handleEnter();
+    } else if (scroll <= homeDescLayout1 - 400) {
+      handleExit();
+    }
+  }, [scroll]);
 
   return (
-    <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
-      <Animated.View
-        style={[isTabletOrMobileDevice ? styles.descContainerMobile : styles.descContainer, !isTabletOrMobileDevice ? (position === "right" ? animatedRightStyle : animatedLeftStyle) : null]}
-      >
+    <View
+      style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}
+      onLayout={(event) => setSectionLayout(event, position === "left" ? setHomeDescLayout1 : setHomeDescLayout2)}
+    >
+      <Animated.View style={[isTabletOrMobileDevice ? styles.descContainerMobile : styles.descContainer, position === "right" ? animatedRightStyle : animatedLeftStyle]}>
         {!isTabletOrMobileDevice ? (
           position === "right" ? (
             <>

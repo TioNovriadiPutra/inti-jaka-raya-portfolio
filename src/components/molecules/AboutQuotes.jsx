@@ -4,9 +4,11 @@ import { fonts } from "@themes/fonts";
 import { colors } from "@themes/colors";
 import useResponsive from "@hooks/useResponsive";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 const AboutQuotes = () => {
   const { isTabletOrMobileDevice } = useResponsive();
+  const { t } = useTranslation();
 
   const titleAnim = useSharedValue(0);
   const quotesAnim = useSharedValue(0);
@@ -39,12 +41,13 @@ const AboutQuotes = () => {
   return (
     <View style={[styles.container, isTabletOrMobileDevice ? styles.containerMobile : styles.containerWeb]}>
       <Animated.Text style={[styles.title, isTabletOrMobileDevice ? styles.titleMobile : styles.titleWeb, titleAnimatedStyle]}>
-        We Are Committed To Providing{`\n`}
-        <Text style={styles.success}>The Best Product & Services</Text>
+        {t("aboutQuotes1")}
+        {`\n`}
+        <Text style={styles.success}>{t("aboutQuotes2")}</Text>
       </Animated.Text>
 
       <Animated.View style={[isTabletOrMobileDevice ? styles.quotesContainerMobile : styles.quotesContainerWeb, quotesAnimatedStyle]}>
-        <Text style={styles.quotes}>Our Product Can Help Increase Efficiencies, Reduce Cost, Save Time, And Increase Machinery & Building Structures Lifetime</Text>
+        <Text style={styles.quotes}>{t("aboutQuotes3")}</Text>
       </Animated.View>
     </View>
   );

@@ -7,11 +7,12 @@ import CustomTextInput from "@components/atoms/CustomTextInput";
 import ButtonSubmit from "@components/atoms/ButtonSubmit";
 import useResponsive from "@hooks/useResponsive";
 import email from "react-native-email";
+import { useTranslation } from "react-i18next";
 
 const InqueriesForm = () => {
   const { control, handleSubmit } = useForm();
-
   const { isTabletOrMobileDevice } = useResponsive();
+  const { t } = useTranslation();
 
   const handleSendEmail = (data) => {
     email("sales_ijr@intijakaraya.com", {
@@ -25,21 +26,21 @@ const InqueriesForm = () => {
     <View style={[styles.container, !isTabletOrMobileDevice && styles.containerWeb]}>
       {isTabletOrMobileDevice ? (
         <View>
-          <Text style={styles.title}>Inquiries</Text>
-          <Text style={styles.subTitle}>For Any Further Information</Text>
+          <Text style={styles.title}>{t("contactTitle")}</Text>
+          <Text style={styles.subTitle}>{t("contactSubtitle")}</Text>
         </View>
       ) : (
         <Text style={styles.title}>
-          Inquiries
-          <Text style={[styles.subTitle, styles.subTitleWeb]}>For Any Further Information</Text>
+          {t("contactTitle")}
+          <Text style={[styles.subTitle, styles.subTitleWeb]}>{t("contactSubtitle")}</Text>
         </Text>
       )}
 
       <View style={styles.form}>
-        <CustomTextInput name="name" defaultValue={null} control={control} placeholder="Name" />
+        <CustomTextInput name="name" defaultValue={null} control={control} placeholder={t("contactName")} />
         <CustomTextInput name="email" defaultValue={null} control={control} placeholder="Email" />
         <CustomTextInput name="subject" defaultValue={null} control={control} placeholder="Subject" />
-        <CustomTextInput name="message" defaultValue={null} control={control} placeholder="Message" textArea />
+        <CustomTextInput name="message" defaultValue={null} control={control} placeholder={t("contactMessage")} textArea />
       </View>
 
       <ButtonSubmit onPress={handleSubmit(handleSendEmail)} />
