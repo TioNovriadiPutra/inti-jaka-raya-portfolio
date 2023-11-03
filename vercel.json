@@ -18,7 +18,8 @@
           "type": "host",
           "value": "inti-jaka-raya-portfolio.vercel.app"
         }
-      ]
+      ],
+      "headers": []
     }
   ]
 }
