@@ -1,34 +1,16 @@
 import { StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import { colors } from "@themes/colors";
-import { useController } from "react-hook-form";
 import { fonts } from "@themes/fonts";
 
-const CustomTextInput = ({
-  name,
-  defaultValue,
-  control,
-  placeholder,
-  textArea,
-}) => {
-  const { field } = useController({
-    name,
-    defaultValue,
-    control,
-  });
+const CustomTextInput = ({ value, setValue, placeholder, textArea }) => {
+  const handleChangeTest = (text) => {
+    setValue(text);
+  };
 
   return (
-    <View
-      style={[styles.container, textArea ? styles.textArea : styles.textNormal]}
-    >
-      <TextInput
-        value={field.value}
-        placeholder={placeholder}
-        placeholderTextColor={colors.Placeholder}
-        onChangeText={field.onChange}
-        style={styles.input}
-        multiline={textArea ? true : false}
-      />
+    <View style={[styles.container, textArea ? styles.textArea : styles.textNormal]}>
+      <TextInput value={value} placeholder={placeholder} placeholderTextColor={colors.Placeholder} onChangeText={handleChangeTest} style={styles.input} multiline={textArea ? true : false} />
     </View>
   );
 };
