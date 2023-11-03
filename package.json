@@ -25,7 +25,6 @@
     "i18next": "^23.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.45.4",
     "react-i18next": "^13.3.1",
     "react-native": "0.72.5",
     "react-native-email": "^2.1.0",
@@ -37,6 +36,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-super-grid": "^5.0.0",
     "react-native-web": "~0.19.6",
+    "react-refresh": "^0.14.0",
     "react-responsive": "^9.0.2",
     "recoil": "^0.7.7"
   },
