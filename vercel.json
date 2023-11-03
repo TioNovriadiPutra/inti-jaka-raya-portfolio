@@ -9,5 +9,22 @@
       "source": "/:path*",
       "destination": "/"
     }
+  ],
+  "headers": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "tionovriadi.com"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
   ]
 }
