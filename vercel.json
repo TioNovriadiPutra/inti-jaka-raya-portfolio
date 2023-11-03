@@ -9,22 +9,5 @@
       "source": "/:path*",
       "destination": "/"
     }
-  ],
-  "headers": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "inti-jaka-raya-portfolio.vercel.app"
-        }
-      ],
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex"
-        }
-      ]
-    }
   ]
 }
