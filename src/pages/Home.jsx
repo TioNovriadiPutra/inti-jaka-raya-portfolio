@@ -12,7 +12,11 @@ import { pageState } from "@store/scrollState";
 import Contact from "@components/organisms/Contact";
 import { useIsFocused } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import { homeDescLayout1State, homeDescLayout2State } from "@store/sectionState";
+import {
+  homeDescLayout1State,
+  homeDescLayout2State,
+} from "@store/sectionState";
+import { Helmet } from "react-helmet";
 
 const Home = ({ navigation }) => {
   const setNav = useSetRecoilState(navState);
@@ -33,7 +37,15 @@ const Home = ({ navigation }) => {
   }, [isFocused]);
 
   return (
-    <MainContainer withParallax parallaxImage={require("@assets/images/startBg.png")} scrollRef={scrollRef}>
+    <MainContainer
+      withParallax
+      parallaxImage={require("@assets/images/startBg.png")}
+      scrollRef={scrollRef}
+    >
+      <Helmet>
+        <title>Home</title>
+        <meta name="description" content={t("welcomeDesc")} />
+      </Helmet>
       <HomeStart scrollRef={scrollRef} />
       <HomeNewsletter />
       <HomeDesc
