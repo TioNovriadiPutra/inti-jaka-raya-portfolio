@@ -6,6 +6,7 @@ import { useSetRecoilState } from "recoil";
 import { pageState } from "@store/scrollState";
 import { useIsFocused } from "@react-navigation/native";
 import { navState } from "@store/navState";
+import { Helmet } from "react-helmet";
 
 const Content = ({ route, navigation }) => {
   const { news } = route.params;
@@ -26,6 +27,14 @@ const Content = ({ route, navigation }) => {
 
   return (
     <MainContainer scrollRef={scrollRef}>
+      <Helmet>
+        <title>Content</title>
+        <meta
+          name="description"
+          content="Halaman ini merupakan deskripsi dari newsletter yang anda baca"
+        />
+        <link rel="canonical" href="https://intijakaraya.com/content" />
+      </Helmet>
       <NewsContent news={news} />
       <Contact />
     </MainContainer>
