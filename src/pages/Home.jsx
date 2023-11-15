@@ -44,7 +44,11 @@ const Home = ({ navigation }) => {
     >
       <Helmet>
         <title>Home</title>
-        <meta name="description" content={t("welcomeDesc")} />
+        <meta
+          name="description"
+          content="PT INTI JAKARAYA adalah Distributor Tunggal SISTEM POLIMER UNIK Buatan Inggris, di Indonesia."
+        />
+        <link rel="canonical" href="https://intijakaraya.com/home" />
       </Helmet>
       <HomeStart scrollRef={scrollRef} />
       <HomeNewsletter />

@@ -8,7 +8,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build": "set \"GENERATE_SOURCEMAP=false\" && npx expo export:web"
+    "build": "set \"GENERATE_SOURCEMAP=false\" && npx expo export:web",
+    "build-sitemap": "node sitemap.jsx"
   },
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
@@ -40,7 +41,8 @@
     "react-native-web": "~0.19.6",
     "react-refresh": "^0.14.0",
     "react-responsive": "^9.0.2",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "sitemaps": "^2.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

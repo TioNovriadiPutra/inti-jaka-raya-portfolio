@@ -7,6 +7,7 @@ import AboutContent from "@components/organisms/AboutContent";
 import Contact from "@components/organisms/Contact";
 import { navState } from "@store/navState";
 import AboutHeader from "@components/organisms/AboutHeader";
+import { Helmet } from "react-helmet";
 
 const About = ({ navigation }) => {
   const setPage = useSetRecoilState(pageState);
@@ -25,6 +26,14 @@ const About = ({ navigation }) => {
 
   return (
     <MainContainer scrollRef={scrollRef}>
+      <Helmet>
+        <title>About</title>
+        <meta
+          name="description"
+          content="PT INTI JAKARAYA memberikan solusi bisnis inovatif kepada pelanggan kami yang memiliki permasalahan sistem aliran fluida, seperti : erosi, korosi, kavitasi, abrasif kering, masalah beton serangan kimia, perlindungan lantai dan lain-lain."
+        />
+        <link rel="canonical" href="https://intijakaraya.com/about" />
+      </Helmet>
       <AboutHeader />
       <AboutContent />
       <Contact />
