@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "inti-jaka-raya-portfolio",
-    "slug": "inti-jaka-raya-portfolio",
+    "name": "Inti Jaka Raya",
+    "slug": "inti-jaka-raya",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/appIcon.png",
