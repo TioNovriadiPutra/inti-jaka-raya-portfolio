@@ -13,10 +13,10 @@ const CompanyInfo = () => {
       <View style={styles.infoContainer}>
         <Image source={require("@assets/images/logoSmall.png")} style={styles.logo} />
         <View style={styles.info}>
-          <Info icon={require("@assets/images/address.png")} info="Jl. Indrayasa No.116, Mekarwangi, Kec. Bojongloa Kidul, Kota Bandung, Jawa Barat 40236" />
+          <Info icon={require("@assets/images/address.png")} info="Jl. Indrayasa No.116, Cibaduyut, Kec. Bojongloa Kidul, Kota Bandung, Jawa Barat 40236" />
           <Info icon={require("@assets/images/phone.png")} info="022 428 23 264" />
-          <Info icon={require("@assets/images/email.png")} info="intijakaraya.ijr@gmail.com" />
-          <BlankInfo info="sales_ijr@intijakaraya.com" />
+          <Info icon={require("@assets/images/email.png")} info="sales_ijr@intijakaraya.com" />
+          <BlankInfo info="intijakaraya.ijr@gmail.com" />
         </View>
       </View>
 
