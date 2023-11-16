@@ -32,6 +32,7 @@ const About = ({ navigation }) => {
           name="description"
           content="PT INTI JAKARAYA memberikan solusi bisnis inovatif kepada pelanggan kami yang memiliki permasalahan sistem aliran fluida, seperti : erosi, korosi, kavitasi, abrasif kering, masalah beton serangan kimia, perlindungan lantai dan lain-lain."
         />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://intijakaraya.com/about" />
       </Helmet>
       <AboutHeader />

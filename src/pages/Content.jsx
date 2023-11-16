@@ -29,10 +29,8 @@ const Content = ({ route, navigation }) => {
     <MainContainer scrollRef={scrollRef}>
       <Helmet>
         <title>Content</title>
-        <meta
-          name="description"
-          content="Halaman ini merupakan deskripsi dari newsletter yang anda baca"
-        />
+        <meta name="description" content="Halaman ini merupakan deskripsi dari newsletter yang anda baca" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://intijakaraya.com/content" />
       </Helmet>
       <NewsContent news={news} />
