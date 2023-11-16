@@ -27,10 +27,8 @@ const Newsletter = ({ navigation }) => {
     <MainContainer scrollRef={scrollRef}>
       <Helmet>
         <title>Newsletter</title>
-        <meta
-          name="description"
-          content="PT INTI JAKA RAYA menampilkan berbagai berita terbaru terkait perkembangan industri coating di dunia"
-        />
+        <meta name="description" content="PT INTI JAKA RAYA menampilkan berbagai berita terbaru terkait perkembangan industri coating di dunia" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://intijakaraya.com/newsletter" />
       </Helmet>
       <NewsletterContent />
