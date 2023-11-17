@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
     <MainContainer withParallax parallaxImage={require("@assets/images/startBg.png")} scrollRef={scrollRef}>
       <Helmet>
         <title>Home</title>
-        <meta name="description" content="PT INTI JAKARAYA adalah Distributor Tunggal SISTEM POLIMER UNIK Buatan Inggris, di Indonesia." />
+        <meta name="description" content="PT INTI JAKA RAYA adalah Distributor Tunggal SISTEM POLIMER UNIK Buatan Inggris, di Indonesia." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://intijakaraya.com/home" />
       </Helmet>

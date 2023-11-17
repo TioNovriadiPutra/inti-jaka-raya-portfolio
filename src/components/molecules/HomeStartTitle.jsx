@@ -11,7 +11,7 @@ const HomeStartTitle = ({ mobile }) => {
     <View style={mobile ? styles.containerMobile : styles.container}>
       <Text style={[styles.title, !mobile ? styles.titleWeb : null]}>
         {t("welcome")}
-        {`\n`}PT INTI JAKARAYA
+        {`\n`}PT INTI JAKA RAYA
       </Text>
       <Text style={[styles.subTitle, !mobile ? styles.titleWeb : null]}>{t("welcomeDesc")}</Text>
     </View>
