@@ -76,7 +76,7 @@ const HomeProductCard = ({ isMobile }) => {
       style={[styles.container, isMobile ? styles.containerMobile : styles.containerWeb, scaleAnimatedStyle, !isMobile && hoverAnimatedStyle]}
       onPress={handlePress}
     >
-      <ImageBackground source={require("@assets/images/product.png")} style={styles.backgroundImage} imageStyle={styles.container}>
+      <ImageBackground source={require("@assets/images/product.png")} style={styles.backgroundImage} imageStyle={styles.container} resizeMode="cover">
         <LinearGradient colors={[colors.Black, "transparent"]} start={[0, 1]} end={[0, -1]} style={[styles.backdrop, isMobile ? styles.backdropMobile : styles.backdropWeb]}>
           <DescType color={colors.WhiteBlur} title={t("productTitle")} />
           <Text style={styles.title}>Unique Polymer Systems (UPS)</Text>
